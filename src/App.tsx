@@ -19,6 +19,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+export const APP_NAME = 'AndroidStartupPerfApp';
+
 const Section: React.FC<{
   title: string;
 }> = ({ children, title }) => {
