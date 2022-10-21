@@ -1,9 +1,23 @@
 {
   "root": true,
+  "env": {
+    "es6": true,
+    "jest": true
+  },
   "extends": "@react-native-community",
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint/eslint-plugin",
+    "eslint-plugin-import",
+    "eslint-plugin-react",
+    "eslint-plugin-jsx-expressions",
+    "eslint-plugin-react-hooks"
   ],
   "overrides": [
     {
@@ -12,11 +26,268 @@
         "*.tsx"
       ],
       "rules": {
-        "@typescript-eslint/no-shadow": [
+        //#region eslint
+        "complexity": [
+          "error",
+          10
+        ],
+        "eqeqeq": "error",
+        "max-classes-per-file": [
+          "error",
+          3
+        ],
+        "max-len": [
+          "error",
+          {
+            "code": 300,
+            "ignoreStrings": true,
+            "ignoreComments": true
+          }
+        ],
+        "no-duplicate-case": "error",
+        "no-return-await": "error",
+        "no-sequences": "error",
+        "no-sparse-arrays": "error",
+        "no-template-curly-in-string": "error",
+        "sort-imports": [
+          "error",
+          {
+            "ignoreDeclarationSort": true,
+            "ignoreCase": true
+          }
+        ],
+        "space-in-parens": [
+          "error",
+          "never"
+        ],
+        "use-isnan": "error",
+        //#endregion
+        //#region @typescript-eslint overriding eslint
+        "no-duplicate-imports": "off",
+        "@typescript-eslint/no-duplicate-imports": [
           "error"
         ],
+        "no-invalid-this": "off",
+        "@typescript-eslint/no-invalid-this": "error",
+        "quotes": "off",
+        "@typescript-eslint/quotes": [
+          "error",
+          "single",
+          {
+            "allowTemplateLiterals": true
+          }
+        ],
+        //#endregion
+        //#region @typescript-eslint
+        "@typescript-eslint/no-explicit-any": "error",
+        //#endregion
+        //#region tslint:recommended
+        "@typescript-eslint/adjacent-overload-signatures": "error",
+        "@typescript-eslint/ban-types": [
+          "error",
+          {
+            "types": {
+              "Object": "Avoid using the `Object` type. Did you mean `object`?",
+              "Function": "Avoid using the `Function` type. Prefer a specific function type, like `() => void`.",
+              "Boolean": "Avoid using the `Boolean` type. Did you mean `boolean`?",
+              "Number": "Avoid using the `Number` type. Did you mean `number`?",
+              "String": "Avoid using the `String` type. Did you mean `string`?",
+              "Symbol": "Avoid using the `Symbol` type. Did you mean `symbol`?"
+            }
+          }
+        ],
+        "@typescript-eslint/consistent-type-assertions": "error",
+        "@typescript-eslint/explicit-member-accessibility": [
+          "error",
+          {
+            "accessibility": "explicit",
+            "overrides": {
+              "constructors": "off"
+            }
+          }
+        ],
+        "@typescript-eslint/member-ordering": [
+          "error",
+          {
+            "default": [
+              "public-static-field",
+              "public-static-method",
+              "protected-static-field",
+              "protected-static-method",
+              "private-static-field",
+              "private-static-method",
+              "public-instance-field",
+              "protected-instance-field",
+              "private-instance-field",
+              "constructor",
+              "public-instance-method",
+              "protected-instance-method",
+              "private-instance-method"
+            ]
+          }
+        ],
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "class",
+            "format": [
+              "PascalCase"
+            ]
+          }
+        ],
+        "@typescript-eslint/no-empty-interface": "error",
+        "@typescript-eslint/no-misused-new": "error",
+        "@typescript-eslint/no-shadow": [
+          "error",
+          {
+            "ignoreFunctionTypeParameterNameValueShadow": true,
+            "ignoreTypeValueShadow": true,
+            "allow": [
+              "State"
+            ]
+          }
+        ],
+        "@typescript-eslint/no-unused-expressions": [
+          "error",
+          {
+            "allowTernary": true
+          }
+        ],
+        "@typescript-eslint/prefer-for-of": "error",
+        "@typescript-eslint/prefer-function-type": "error",
+        "@typescript-eslint/triple-slash-reference": [
+          "error",
+          {
+            "path": "always",
+            "types": "prefer-import",
+            "lib": "always"
+          }
+        ],
+        "@typescript-eslint/type-annotation-spacing": "error",
+        "@typescript-eslint/unified-signatures": "error",
+        "brace-style": [
+          "error",
+          "1tbs",
+          {
+            "allowSingleLine": true
+          }
+        ],
+        "comma-dangle": [
+          "error",
+          "always-multiline"
+        ],
+        "constructor-super": "error",
+        "new-parens": "error",
+        "no-caller": "error",
+        "no-cond-assign": "error",
+        "no-console": "error",
+        "no-debugger": "error",
+        "no-empty": "error",
+        "no-eval": "error",
+        "no-new-wrappers": "error",
         "no-shadow": "off",
-        "no-undef": "off"
+        "no-throw-literal": "error",
+        "no-trailing-spaces": "error",
+        "no-undef-init": "error",
+        "no-unsafe-finally": "error",
+        "no-unused-expressions": "off",
+        "no-var": "error",
+        "object-shorthand": "error",
+        "one-var": [
+          "error",
+          "never"
+        ],
+        "prefer-const": "error",
+        "quote-props": [
+          "error",
+          "consistent-as-needed"
+        ],
+        "space-before-function-paren": [
+          "error",
+          {
+            "anonymous": "never",
+            "asyncArrow": "always",
+            "named": "never"
+          }
+        ],
+        "valid-typeof": "error",
+        //#endregion
+        //#region import
+        "import/no-deprecated": "warn",
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            "devDependencies": true,
+            "optionalDependencies": false,
+            "peerDependencies": false,
+            "bundledDependencies": false
+          }
+        ],
+        "import/order": [
+          "warn",
+          {
+            "alphabetize": {
+              "caseInsensitive": true,
+              "order": "asc"
+            },
+            "groups": [
+              [
+                "external",
+                "builtin"
+              ],
+              [
+                "parent",
+                "sibling"
+              ]
+            ],
+            "newlines-between": "always-and-inside-groups"
+          }
+        ],
+        //#endregion
+        //#region jsx-expressions
+        "jsx-expressions/strict-logical-expressions": "error",
+        //#endregion
+        //#region react
+        "react/jsx-boolean-value": [
+          "error",
+          "always"
+        ],
+        "react/jsx-closing-bracket-location": "warn",
+        "react/jsx-curly-spacing": "warn",
+        "react/jsx-equals-spacing": "warn",
+        "react/jsx-key": "error",
+        "react/jsx-no-bind": [
+          "warn",
+          {
+            "allowArrowFunctions": true
+          }
+        ],
+        "react/jsx-wrap-multilines": "warn",
+        "react/no-string-refs": "warn",
+        "react/self-closing-comp": "warn",
+        //#endregion
+        //#region react-hooks
+        "react-hooks/exhaustive-deps": "warn",
+        "react-hooks/rules-of-hooks": "warn",
+        //#endregion
+        // TODO: Consider removing these.
+        //#region off rules
+        "arrow-parens": "off",
+        "no-bitwise": "off",
+        "no-magic-numbers": "off",
+        "no-multiple-empty-lines": "off",
+        "prefer-object-spread": "off",
+        "radix": "off",
+        "sort-keys": "off",
+        "@typescript-eslint/no-magic-numbers": "off",
+        "@typescript-eslint/no-namespace": "off"
+        //#endregion
+      },
+      "settings": {
+        "import/resolver": "eslint-import-resolver-typescript",
+        "react": {
+          "version": "detect"
+        }
       }
     }
   ]
