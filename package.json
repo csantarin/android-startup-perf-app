@@ -1,5 +1,6 @@
 {
   "name": "android-startup-perf-app",
+  "description": "A study of improving UX in perceived startup time during JS bundle loading phase with a React Native app on Android.",
   "version": "0.0.1",
   "private": true,
   "scripts": {
