@@ -26,5 +26,29 @@ target 'AndroidStartupPerfApp' do
   post_install do |installer|
     react_native_post_install(installer)
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
+
+    # arm64 is excluded so we can build on Apple Silicon; more info: https://stackoverflow.com/questions/63607158#answer-63955114
+    # i386 is not supported by hermes
+    # i386 is being excluded in node_modules/react-native/scripts/react_native_pods.rb
+    # but on Apple Silicon, it removes the arm64 from the list so we're re-adding that back in here
+    excluded_archs_default = has_pod(installer, 'hermes-engine') ? "i386" : ""
+
+    projects = installer.aggregate_targets
+      .map{ |t| t.user_project }
+      .uniq{ |p| p.path }
+      .push(installer.pods_project)
+
+    # Change config for main project (pbxproj)
+    projects.each do |project|
+      project.build_configurations.each do |config|
+        config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64 " + excluded_archs_default
+      end
+      project.save()
+    end
+
+    # Change config for dependencies (Pods)
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64 " + excluded_archs_default
+    end
   end
 end
