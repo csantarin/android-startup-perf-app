@@ -11,7 +11,9 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text } from 'react-native';
+
+import ScreenView from './ScreenView';
 
 export const APP_NAME = 'AndroidStartupPerfApp';
 
@@ -42,26 +44,18 @@ const App = () => {
 
 const HomeScreen = () => {
   return (
-    <View style={styles.screenContainer}>
+    <ScreenView>
       <Text>Home Screen</Text>
-    </View>
+    </ScreenView>
   );
 };
 
 const DetailsScreen = () => {
   return (
-    <View style={styles.screenContainer}>
+    <ScreenView>
       <Text>Details Screen</Text>
-    </View>
+    </ScreenView>
   );
 };
-
-const styles = StyleSheet.create({
-  screenContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default App;
