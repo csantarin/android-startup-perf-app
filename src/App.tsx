@@ -15,7 +15,19 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export const APP_NAME = 'AndroidStartupPerfApp';
 
-const RootStack = createNativeStackNavigator();
+// NOTE: Don't use interface. Don't extend (extends) or intersect (&) with ParamsListBase, either.
+//
+// React Navigation Stack Navigator's ParamListBase generic type
+// goes absolutely loco with Record<string, unknown | object>!
+//
+// When you don't extend it, RouteNames work, but your custom params "don't".
+// When you extend it, RouteNames IntelliSense stops working.
+type RootStackParamList = {
+  Home: undefined;
+  Details: undefined;
+};
+
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
