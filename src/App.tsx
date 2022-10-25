@@ -20,7 +20,7 @@ const RootStack = createNativeStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <RootStack.Navigator>
+      <RootStack.Navigator initialRouteName="Home">
         <RootStack.Screen name="Home" component={HomeScreen} />
         <RootStack.Screen name="Details" component={DetailsScreen} />
       </RootStack.Navigator>
