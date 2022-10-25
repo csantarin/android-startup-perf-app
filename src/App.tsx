@@ -11,7 +11,7 @@
 import { NavigationContainer, NavigationProp, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button, Text, TextInput, View } from 'react-native';
 
 import ScreenView from './ScreenView';
 
@@ -26,9 +26,36 @@ export const APP_NAME = 'AndroidStartupPerfApp';
 // When you extend it, RouteNames IntelliSense stops working.
 type RootStackParamList = {
   Home: undefined;
-  Details: undefined;
-  Third: undefined;
-  Final: undefined;
+  Step1: undefined;
+  Step2: undefined;
+  Step3: undefined;
+  Review: undefined;
+  Complete: undefined;
+};
+
+const ROOT_STACK_KEYS: (keyof RootStackParamList)[] = [
+  // multiline
+  'Home',
+  'Step1',
+  'Step2',
+  'Step3',
+  'Review',
+  'Complete',
+];
+
+const useRootStackNavigatorNavigate = () => {
+  const navigator = useNavigation<NavigationProp<RootStackParamList>>();
+  const navigateTo = ROOT_STACK_KEYS.reduce((navigateToFinal, key) => {
+    navigateToFinal[key] = () => {
+      navigator.navigate(key);
+    };
+    return navigateToFinal;
+  }, {} as Record<keyof RootStackParamList, () => void>);
+
+  return {
+    navigator,
+    navigateTo,
+  };
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -38,90 +65,104 @@ const App = () => {
     <NavigationContainer>
       <RootStack.Navigator initialRouteName="Home">
         <RootStack.Screen name="Home" component={HomeScreen} />
-        <RootStack.Screen name="Details" component={DetailsScreen} />
-        <RootStack.Screen name="Third" component={ThirdScreen} />
-        <RootStack.Screen name="Final" component={FinalScreen} />
+        <RootStack.Screen name="Step1" component={Step1Screen} />
+        <RootStack.Screen name="Step2" component={Step2Screen} />
+        <RootStack.Screen name="Step3" component={Step3Screen} />
+        <RootStack.Screen name="Review" component={ReviewScreen} />
+        <RootStack.Screen name="Complete" component={CompleteScreen} />
       </RootStack.Navigator>
     </NavigationContainer>
   );
 };
 
 const HomeScreen = () => {
-  const navigator = useNavigation<NavigationProp<RootStackParamList>>();
-  const navigateToDetails = () => {
-    navigator.navigate('Details');
-  };
+  const { navigateTo } = useRootStackNavigatorNavigate();
 
   return (
     <ScreenView>
-      <Text>Home Screen</Text>
-      <Button title="Go to Details" onPress={navigateToDetails} />
+      <Text>Home</Text>
+      <Button title="Start" onPress={navigateTo.Step1} />
     </ScreenView>
   );
 };
 
-const DetailsScreen = () => {
-  const navigator = useNavigation<NavigationProp<RootStackParamList>>();
-  const navigateToHome = () => {
-    navigator.navigate('Home');
-  };
-  const navigateToThird = () => {
-    navigator.navigate('Third');
-  };
+const Step1Screen = () => {
+  const { navigateTo } = useRootStackNavigatorNavigate();
 
   return (
     <ScreenView>
-      <Text>Details Screen</Text>
+      <Text>Step 1: Consent</Text>
       <View>
-        <Text>This is the second screen on this stack.</Text>
-        <Text>Details of certain wonderful things are presented here.</Text>
+        <View>
+          <Text>Read the Terms & Conditions.</Text>
+        </View>
+        <View>
+          <Text>Read the Privacy Policy.</Text>
+        </View>
       </View>
-      <Button title="Go to Home" onPress={navigateToHome} />
-      <Button title="Go to Third" onPress={navigateToThird} />
+      <Button title="Step 2" onPress={navigateTo.Step2} />
     </ScreenView>
   );
 };
 
-const ThirdScreen = () => {
-  const navigator = useNavigation<NavigationProp<RootStackParamList>>();
-  const navigateToDetails = () => {
-    navigator.navigate('Details');
-  };
-  const navigateToFinal = () => {
-    navigator.navigate('Final');
-  };
+const Step2Screen = () => {
+  const { navigateTo } = useRootStackNavigatorNavigate();
 
   return (
     <ScreenView>
-      <Text>Third Screen</Text>
+      <Text>Step 2: Input</Text>
       <View>
-        <Text>This is the third screen on this stack.</Text>
-        <Text>I padded this content to add more screens to the stack.</Text>
+        <TextInput placeholder="Dummy input" />
       </View>
-      <Button title="Go to Details" onPress={navigateToDetails} />
-      <Button title="Go to Final" onPress={navigateToFinal} />
+      <Button title="Step 3" onPress={navigateTo.Step3} />
     </ScreenView>
   );
 };
 
-const FinalScreen = () => {
-  const navigator = useNavigation<NavigationProp<RootStackParamList>>();
-  const navigateToDetails = () => {
-    navigator.navigate('Third');
-  };
-  const navigateToHome = () => {
-    navigator.navigate('Home');
-  };
+const Step3Screen = () => {
+  const { navigateTo } = useRootStackNavigatorNavigate();
 
   return (
     <ScreenView>
-      <Text>Final Screen</Text>
+      <Text>Step 3: More input</Text>
       <View>
-        <Text>This is the last screen on this stack.</Text>
-        <Text>There are no further new screens to find.</Text>
+        <TextInput placeholder="Dummy input" />
+        <TextInput placeholder="More dummy input!" />
       </View>
-      <Button title="Go to Details" onPress={navigateToDetails} />
-      <Button title="Go to Home" onPress={navigateToHome} />
+      <Button title="Review Details" onPress={navigateTo.Review} />
+    </ScreenView>
+  );
+};
+
+const ReviewScreen = () => {
+  const { navigateTo } = useRootStackNavigatorNavigate();
+
+  return (
+    <ScreenView>
+      <Text>Review your details</Text>
+      <View>
+        <Text>Here are your input details.</Text>
+        <Text>Go through them. Verify that they're good to go.</Text>
+        <Text>Step 2 dummy input.</Text>
+        <Text>Step 3 dummy input.</Text>
+        <Text>Step 3 more dummy input.</Text>
+      </View>
+      <Button title="Start over" onPress={navigateTo.Home} />
+      <Button title="Submit" onPress={navigateTo.Complete} />
+    </ScreenView>
+  );
+};
+
+const CompleteScreen = () => {
+  const { navigateTo } = useRootStackNavigatorNavigate();
+
+  return (
+    <ScreenView>
+      <Text>Complete Screen</Text>
+      <View>
+        <Text>Great! You're all set.</Text>
+      </View>
+      <Button title="Start over" onPress={navigateTo.Home} />
     </ScreenView>
   );
 };
