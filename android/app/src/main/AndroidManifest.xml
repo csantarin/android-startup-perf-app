@@ -10,16 +10,25 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+      <!-- About "singleTop" -->
+      <!-- Allows the app to resume ReactActivity if it was the last one on the stack. -->
+      <!-- https://www.mobomo.com/2011/06/android-understanding-activity-launchmode -->
+      <!-- https://stackoverflow.com/questions/1450019/android-restore-last-viewed-activity#comment19114809_1450579 -->
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-        android:launchMode="singleTask"
+        android:launchMode="singleTop"
         android:windowSoftInputMode="adjustResize">
         <intent-filter>
           <action android:name="android.intent.action.MAIN" />
           <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
+      </activity>
+      <activity
+        android:name=".ReactActivity"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
       </activity>
     </application>
 </manifest>
