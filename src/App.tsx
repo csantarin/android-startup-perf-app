@@ -28,6 +28,7 @@ type RootStackParamList = {
   Home: undefined;
   Details: undefined;
   Third: undefined;
+  Final: undefined;
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -39,6 +40,7 @@ const App = () => {
         <RootStack.Screen name="Home" component={HomeScreen} />
         <RootStack.Screen name="Details" component={DetailsScreen} />
         <RootStack.Screen name="Third" component={ThirdScreen} />
+        <RootStack.Screen name="Final" component={FinalScreen} />
       </RootStack.Navigator>
     </NavigationContainer>
   );
@@ -85,13 +87,35 @@ const ThirdScreen = () => {
   const navigateToDetails = () => {
     navigator.navigate('Details');
   };
+  const navigateToFinal = () => {
+    navigator.navigate('Final');
+  };
+
+  return (
+    <ScreenView>
+      <Text>Third Screen</Text>
+      <View>
+        <Text>This is the third screen on this stack.</Text>
+        <Text>I padded this content to add more screens to the stack.</Text>
+      </View>
+      <Button title="Go to Details" onPress={navigateToDetails} />
+      <Button title="Go to Final" onPress={navigateToFinal} />
+    </ScreenView>
+  );
+};
+
+const FinalScreen = () => {
+  const navigator = useNavigation<NavigationProp<RootStackParamList>>();
+  const navigateToDetails = () => {
+    navigator.navigate('Third');
+  };
   const navigateToHome = () => {
     navigator.navigate('Home');
   };
 
   return (
     <ScreenView>
-      <Text>Third Screen</Text>
+      <Text>Final Screen</Text>
       <View>
         <Text>This is the last screen on this stack.</Text>
         <Text>There are no further new screens to find.</Text>
