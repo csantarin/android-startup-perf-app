@@ -8,10 +8,10 @@
  * @format
  */
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, NavigationProp, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { Text } from 'react-native';
+import { Button, Text } from 'react-native';
 
 import ScreenView from './ScreenView';
 
@@ -43,17 +43,29 @@ const App = () => {
 };
 
 const HomeScreen = () => {
+  const navigator = useNavigation<NavigationProp<RootStackParamList>>();
+  const navigateToDetails = () => {
+    navigator.navigate('Details');
+  };
+
   return (
     <ScreenView>
       <Text>Home Screen</Text>
+      <Button title="Go to Details" onPress={navigateToDetails} />
     </ScreenView>
   );
 };
 
 const DetailsScreen = () => {
+  const navigator = useNavigation<NavigationProp<RootStackParamList>>();
+  const navigateToHome = () => {
+    navigator.navigate('Home');
+  };
+
   return (
     <ScreenView>
       <Text>Details Screen</Text>
+      <Button title="Go to Home" onPress={navigateToHome} />
     </ScreenView>
   );
 };
