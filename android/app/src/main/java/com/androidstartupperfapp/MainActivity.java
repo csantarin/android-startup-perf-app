@@ -20,7 +20,11 @@ public class MainActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+    // React Native Screens and React Navigation suggest using `null` for savedInstanceState.
+    // This supposedly prevents "persisted view state" inconsistency errors during activity restarts.
+    // https://github.com/software-mansion/react-native-screens#android
+    // https://reactnavigation.org/docs/getting-started#installing-dependencies-into-a-bare-react-native-project
+    super.onCreate(null);
 
     binding = MainActivityBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());

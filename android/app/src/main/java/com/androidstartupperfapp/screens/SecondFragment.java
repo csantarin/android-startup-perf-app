@@ -1,5 +1,6 @@
 package com.androidstartupperfapp.screens;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ public class SecondFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
 
     binding.secondNavToThirdButton.setOnClickListener(this::onSecondNavToThirdButtonClick);
+    binding.startReactActivityButton.setOnClickListener(this::onStartReactActivityButtonClick);
   }
 
   @Override
@@ -42,5 +44,13 @@ public class SecondFragment extends Fragment {
     NavHostFragment
       .findNavController(SecondFragment.this)
       .navigate(R.id.action_SecondFragment_to_ThirdFragment);
+  }
+
+  private void onStartReactActivityButtonClick(View view) {
+    // In a fragment, we can't use the current activity (MainActivity) class directly.
+    // However, we can use getActivity() to get the job done.
+    // https://stackoverflow.com/a/15478468/11455106
+    Intent intent = new Intent(getActivity(), ReactActivity.class);
+    startActivity(intent);
   }
 }
