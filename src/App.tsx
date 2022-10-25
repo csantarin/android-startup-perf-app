@@ -22,6 +22,7 @@ const App = () => {
     <NavigationContainer>
       <RootStack.Navigator>
         <RootStack.Screen name="Home" component={HomeScreen} />
+        <RootStack.Screen name="Details" component={DetailsScreen} />
       </RootStack.Navigator>
     </NavigationContainer>
   );
@@ -31,6 +32,14 @@ const HomeScreen = () => {
   return (
     <View style={styles.screenContainer}>
       <Text>Home Screen</Text>
+    </View>
+  );
+};
+
+const DetailsScreen = () => {
+  return (
+    <View style={styles.screenContainer}>
+      <Text>Details Screen</Text>
     </View>
   );
 };
