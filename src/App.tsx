@@ -45,16 +45,16 @@ const ROOT_STACK_KEYS: (keyof FlowStackParamList)[] = [
 ];
 
 const useFlowStackNavigatorNavigate = () => {
-  const navigator = useNavigation<NavigationProp<FlowStackParamList>>();
+  const navigation = useNavigation<NavigationProp<FlowStackParamList>>();
   const navigateTo = ROOT_STACK_KEYS.reduce((navigateToFinal, key) => {
     navigateToFinal[key] = () => {
-      navigator.navigate(key);
+      navigation.navigate(key);
     };
     return navigateToFinal;
   }, {} as Record<keyof FlowStackParamList, () => void>);
 
   return {
-    navigator,
+    navigation,
     navigateTo,
   };
 };
