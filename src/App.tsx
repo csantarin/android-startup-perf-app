@@ -11,7 +11,7 @@
 import { NavigationContainer, NavigationProp, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { createContext, useContext, useState } from 'react';
-import { Button, Text, TextInput, TextProps, View } from 'react-native';
+import { Button, Text, TextInput, View } from 'react-native';
 import ConditionalText from './ConditionalText';
 
 import ScreenView from './ScreenView';
