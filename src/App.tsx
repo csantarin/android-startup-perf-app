@@ -208,6 +208,7 @@ const Step1Screen = () => {
         </View>
         <View>
           <Text>Read the Privacy Policy.</Text>
+          <Text>Nards!</Text>
         </View>
         <ConditionalText show={step1State}>Agreed!</ConditionalText>
         <Button title={buttonTitle} onPress={handleButtonPress} color={buttonColor} />

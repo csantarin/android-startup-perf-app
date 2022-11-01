@@ -3,20 +3,25 @@ package com.androidstartupperfapp;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.androidstartupperfapp.databinding.MainActivityBinding;
+import com.facebook.react.ReactFragment;
+import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.google.android.material.snackbar.Snackbar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler {
 
   private AppBarConfiguration appBarConfiguration;
   private MainActivityBinding binding;
+  private Button mButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     binding.fab
       .setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
       .setAction("Action", null).show());
+
+    this.initReactFragment();
   }
 
   @Override
@@ -63,5 +70,58 @@ public class MainActivity extends AppCompatActivity {
     NavController navController = Navigation.findNavController(this, R.id.nav_host_main_content_fragment);
     return NavigationUI.navigateUp(navController, appBarConfiguration)
       || super.onSupportNavigateUp();
+  }
+
+  @Override
+  public void onBackPressed() {
+    if (this.reactFragment.isVisible()) {
+      ReactFragment reactFragment = (ReactFragment) this.reactFragment;
+      reactFragment.onBackPressed();
+    } else {
+      super.onBackPressed();
+    }
+  }
+
+  @Override
+  public void invokeDefaultOnBackPressed() {
+    super.onBackPressed();
+  }
+
+  private Fragment reactFragment;
+
+  private void loadReactFragment() {
+    this.reactFragment = new ReactFragment.Builder()
+      .setComponentName("AndroidStartupPerfApp")
+      .build();
+
+    getSupportFragmentManager()
+      .beginTransaction()
+      .add(R.id.react_fragment, this.reactFragment)
+      .addToBackStack(null)
+      .hide(this.reactFragment)
+      .commit();
+  }
+
+  private void presentReactFragment() {
+    if (this.reactFragment.isHidden()) {
+      getSupportFragmentManager()
+        .beginTransaction()
+        .show(this.reactFragment)
+        .commit();
+    } else {
+      getSupportFragmentManager()
+        .beginTransaction()
+        .add(R.id.react_fragment, this.reactFragment)
+        .addToBackStack(null)
+        .commit();
+    }
+  }
+
+  private void initReactFragment() {
+    this.loadReactFragment();
+    mButton = findViewById(R.id.show_react_fragment_button);
+    mButton.setOnClickListener(v -> {
+      this.presentReactFragment();
+    });
   }
 }
