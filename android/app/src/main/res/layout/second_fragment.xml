@@ -6,6 +6,18 @@
   android:layout_height="match_parent"
   tools:context=".SecondFragment">
 
+  <Button
+    android:id="@+id/second_button3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/purple_500"
+    android:text="@string/previous"
+    android:textColor="@color/white"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/second_textview" />
+
   <TextView
     android:id="@+id/second_textview"
     android:layout_width="wrap_content"
@@ -28,7 +40,19 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/second_textview" />
 
-<!--  <Button-->
+  <Button
+    android:id="@+id/third_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/purple_500"
+    android:text="@string/next"
+    android:textColor="@color/white"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/second_textview" />
+
+  <!--  <Button-->
 <!--    android:id="@+id/show_react_fragment_button"-->
 <!--    android:layout_width="wrap_content"-->
 <!--    android:layout_height="wrap_content"-->

@@ -11,12 +11,20 @@
 import { NavigationContainer, NavigationProp, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { createContext, useContext, useState } from 'react';
-import { Button, Text, TextInput, View } from 'react-native';
+import { Button, NativeModules, Text, TextInput, View } from 'react-native';
 
 import ConditionalText from './ConditionalText';
 import ScreenView from './ScreenView';
 
 export const APP_NAME = 'AndroidStartupPerfApp';
+
+const { RNNavigationState } = NativeModules as typeof NativeModules & {
+  RNNavigationState: RNNavigationState;
+};
+
+interface RNNavigationState {
+  setIndex(index: number): void;
+}
 
 // NOTE: Don't use interface. Don't extend (extends) or intersect (&) with ParamsListBase, either.
 //
@@ -160,17 +168,24 @@ const useFlowStateContext = <Key extends keyof FlowStateContextValue>(step: Key)
 
 const App = () => {
   const flowDataStateContextValue = useFlowStateContextValue();
+  const handleNavigationStateChange = (state: NavigationState<FlowStackParamList> | undefined) => {
+    if (!state) {
+      return;
+    }
+
+    RNNavigationState.setIndex(state.index);
+  };
 
   return (
     <FlowStateContext.Provider value={flowDataStateContextValue}>
-      <NavigationContainer>
+      <NavigationContainer onStateChange={handleNavigationStateChange}>
         <FlowStack.Navigator initialRouteName="Home">
           <FlowStack.Screen name="Home" component={HomeScreen} />
+          <FlowStack.Screen name="Review" component={ReviewScreen} />
+          <FlowStack.Screen name="Complete" component={CompleteScreen} />
           <FlowStack.Screen name="Step1" component={Step1Screen} />
           <FlowStack.Screen name="Step2" component={Step2Screen} />
           <FlowStack.Screen name="Step3" component={Step3Screen} />
-          <FlowStack.Screen name="Review" component={ReviewScreen} />
-          <FlowStack.Screen name="Complete" component={CompleteScreen} />
         </FlowStack.Navigator>
       </NavigationContainer>
     </FlowStateContext.Provider>

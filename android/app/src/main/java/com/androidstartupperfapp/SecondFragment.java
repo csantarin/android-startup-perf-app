@@ -28,7 +28,7 @@ public class SecondFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
 
     binding.secondButton.setOnClickListener(this::onSecondButtonClick);
-//    binding.showReactFragmentButton.setOnClickListener(this::onShowReactFragmentButtonClick);
+    binding.thirdButton.setOnClickListener(this::onThirdButtonClick);
   }
 
   @Override
@@ -43,9 +43,9 @@ public class SecondFragment extends Fragment {
       .navigate(R.id.action_SecondFragment_to_FirstFragment);
   }
 
-//  private void onShowReactFragmentButtonClick(View view) {
-//    NavHostFragment
-//      .findNavController(SecondFragment.this)
-//      .navigate(R.id.action_SecondFragment_to_ThirdFragment);
-//  }
+  private void onThirdButtonClick(View view) {
+    NavHostFragment
+      .findNavController(SecondFragment.this)
+      .navigate(R.id.action_SecondFragment_to_ThirdFragment);
+  }
 }
