@@ -3,8 +3,6 @@ package com.androidstartupperfapp;
 import android.os.Bundle;
 import android.util.Log;
 
-import androidx.fragment.app.FragmentManager;
-
 import com.androidstartupperfapp.screens.LandingScreenFragment;
 import com.facebook.react.ReactActivity;
 
@@ -70,6 +68,8 @@ public class MainActivity extends ReactActivity {
     return "AndroidStartupPerfApp";
   }
 
+  // While in React Navigation, this whole lifecycle callback doesn't get invoked... at all.
+  // Once the HomeScreen on React is reached, the next back button press is handed off here.
   @Override
   public void invokeDefaultOnBackPressed() {
     if (MainActivityScreensManager.getLandingScreenFragment().isHidden()) {
@@ -77,8 +77,11 @@ public class MainActivity extends ReactActivity {
         .beginTransaction()
         .show(MainActivityScreensManager.getLandingScreenFragment())
         .commit();
-    } else {
-      super.invokeDefaultOnBackPressed();
     }
+  }
+
+  @Override
+  public void onBackPressed() {
+    super.onBackPressed();
   }
 }
