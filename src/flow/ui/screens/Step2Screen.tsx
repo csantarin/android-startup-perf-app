@@ -17,7 +17,7 @@ const Step2Screen = () => {
     <ScreenView>
       <Text>Step 2: Input</Text>
       <View>
-        <TextInput placeholder="Dummy input." value={step2Value} onChangeText={handleInputChange} />
+        <TextInput placeholder="Enter dummy input." value={step2Value} onChangeText={handleInputChange} autoFocus={true} />
       </View>
       <Button title="Step 3" onPress={navigateTo.Step3} />
     </ScreenView>
