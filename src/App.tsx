@@ -98,7 +98,7 @@ const DEFAULT_FLOW_STATE_CONTEXT_VALUE: FlowStateContextValue = {
 };
 
 const FlowStateContext = createContext(DEFAULT_FLOW_STATE_CONTEXT_VALUE);
-const useFlowStateContextValue = (): FlowStateContextValue => {
+const useFlowStateContextProviderValue = (): FlowStateContextValue => {
   const [ step1Value, setStep1Value ] = useState(DEFAULT_FLOW_STATE_CONTEXT_VALUE.step1.value);
   const resetStep1Value = () => {
     setStep1Value(DEFAULT_FLOW_STATE_CONTEXT_VALUE.step1.value);
@@ -159,7 +159,7 @@ const useFlowStateContext = <Key extends keyof FlowStateContextValue>(step: Key)
 };
 
 const App = () => {
-  const flowDataStateContextValue = useFlowStateContextValue();
+  const flowDataStateContextValue = useFlowStateContextProviderValue();
 
   return (
     <FlowStateContext.Provider value={flowDataStateContextValue}>
