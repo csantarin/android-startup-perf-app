@@ -29,7 +29,7 @@ public class SecondFragment extends Fragment {
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    binding.secondButton.setOnClickListener(this::onSecondButtonClick);
+    binding.secondNavToThirdButton.setOnClickListener(this::onSecondNavToThirdButtonClick);
   }
 
   @Override
@@ -38,9 +38,9 @@ public class SecondFragment extends Fragment {
     binding = null;
   }
 
-  private void onSecondButtonClick(View view) {
+  private void onSecondNavToThirdButtonClick(View view) {
     NavHostFragment
       .findNavController(SecondFragment.this)
-      .navigate(R.id.action_SecondFragment_to_FirstFragment);
+      .navigate(R.id.action_SecondFragment_to_ThirdFragment);
   }
 }

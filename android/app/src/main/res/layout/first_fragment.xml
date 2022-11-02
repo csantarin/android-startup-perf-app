@@ -11,13 +11,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/hello_first_fragment"
-    app:layout_constraintBottom_toTopOf="@id/first_button"
+    app:layout_constraintBottom_toTopOf="@id/first_nav_to_second_button"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
   <Button
-    android:id="@+id/first_button"
+    android:id="@+id/first_nav_to_second_button"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:backgroundTint="@color/purple_500"

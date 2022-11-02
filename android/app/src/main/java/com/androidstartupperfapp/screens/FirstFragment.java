@@ -29,7 +29,7 @@ public class FirstFragment extends Fragment {
   public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    binding.firstButton.setOnClickListener(this::onFirstButtonClick);
+    binding.firstNavToSecondButton.setOnClickListener(this::onFirstNavToSecondButtonClick);
   }
 
   @Override
@@ -38,7 +38,7 @@ public class FirstFragment extends Fragment {
     binding = null;
   }
 
-  private void onFirstButtonClick(View view) {
+  private void onFirstNavToSecondButtonClick(View view) {
     NavHostFragment
       .findNavController(FirstFragment.this)
       .navigate(R.id.action_FirstFragment_to_SecondFragment);

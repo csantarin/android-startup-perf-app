@@ -4,27 +4,27 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".screens.SecondFragment">
+  tools:context=".screens.ThirdFragment">
 
   <TextView
-    android:id="@+id/second_textview"
+    android:id="@+id/third_textview"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="@string/hello_second_fragment"
-    app:layout_constraintBottom_toTopOf="@id/second_nav_to_third_button"
+    android:text="@string/hello_third_fragment"
+    app:layout_constraintBottom_toTopOf="@id/show_react_fragment_button"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
   <Button
-    android:id="@+id/second_nav_to_third_button"
+    android:id="@+id/show_react_fragment_button"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/purple_500"
-    android:text="@string/next"
+    android:backgroundTint="@color/teal_700"
+    android:text="@string/show_react_fragment"
     android:textColor="@color/white"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/second_textview" />
+    app:layout_constraintTop_toBottomOf="@id/third_textview" />
 </androidx.constraintlayout.widget.ConstraintLayout>
