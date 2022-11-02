@@ -7,7 +7,7 @@
 
   <fragment
     android:id="@+id/FirstFragment"
-    android:name="com.androidstartupperfapp.FirstFragment"
+    android:name="com.androidstartupperfapp.screens.FirstFragment"
     android:label="@string/first_fragment_label"
     tools:layout="@layout/first_fragment">
 
@@ -21,7 +21,7 @@
   </fragment>
   <fragment
     android:id="@+id/SecondFragment"
-    android:name="com.androidstartupperfapp.SecondFragment"
+    android:name="com.androidstartupperfapp.screens.SecondFragment"
     android:label="@string/second_fragment_label"
     tools:layout="@layout/second_fragment">
 
