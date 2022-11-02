@@ -6,7 +6,7 @@ import ScreenView from '../../../components/ScreenView';
 import useFlowStackNavigatorNavigate from '../../nav/useFlowStackNavigatorNavigate';
 import useFlowStateContext from '../../sm/useFlowStateContext';
 
-const ReviewScreen = () => {
+const Step4ReviewScreen = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [step1Value, _setStep1Value, resetStep1Value] = useFlowStateContext('step1');
   const step1Text = step1Value ? 'Agreed' : 'Disagreed';
@@ -39,9 +39,9 @@ const ReviewScreen = () => {
         <Text>Step 3: {step3Text}</Text>
       </View>
       <Button title="Start over" color="red" onPress={handleStartOverButtonPress} />
-      <Button title="Submit" onPress={navigateTo.Complete} />
+      <Button title="Submit" onPress={navigateTo.Step5Complete} />
     </ScreenView>
   );
 };
 
-export default ReviewScreen;
+export default Step4ReviewScreen;

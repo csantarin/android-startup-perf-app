@@ -19,7 +19,7 @@ const Step3Screen = () => {
       <View>
         <TextInput placeholder="More dummy input!" value={step3Value} onChangeText={handleInputChange} />
       </View>
-      <Button title="Review Details" onPress={navigateTo.Review} />
+      <Button title="Review Details" onPress={navigateTo.Step4Review} />
     </ScreenView>
   );
 };

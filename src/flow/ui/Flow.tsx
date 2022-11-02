@@ -6,12 +6,12 @@ import FlowStack from '../nav/FlowStack';
 import FlowStateContext from '../sm/FlowStateContext';
 import useFlowStateContextProviderValue from '../sm/useFlowStateContextProviderValue';
 
-import CompleteScreen from './screens/CompleteScreen';
 import HomeScreen from './screens/HomeScreen';
-import ReviewScreen from './screens/ReviewScreen';
 import Step1Screen from './screens/Step1Screen';
 import Step2Screen from './screens/Step2Screen';
 import Step3Screen from './screens/Step3Screen';
+import Step4ReviewScreen from './screens/Step4ReviewScreen';
+import Step5CompleteScreen from './screens/Step5CompleteScreen';
 
 const Flow = () => {
   const flowDataStateContextValue = useFlowStateContextProviderValue();
@@ -24,8 +24,8 @@ const Flow = () => {
           <FlowStack.Screen name="Step1" component={Step1Screen} />
           <FlowStack.Screen name="Step2" component={Step2Screen} />
           <FlowStack.Screen name="Step3" component={Step3Screen} />
-          <FlowStack.Screen name="Review" component={ReviewScreen} />
-          <FlowStack.Screen name="Complete" component={CompleteScreen} />
+          <FlowStack.Screen name="Step4Review" component={Step4ReviewScreen} />
+          <FlowStack.Screen name="Step5Complete" component={Step5CompleteScreen} />
         </FlowStack.Navigator>
       </NavigationContainer>
     </FlowStateContext.Provider>

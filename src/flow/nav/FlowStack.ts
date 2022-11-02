@@ -12,8 +12,8 @@ export type FlowStackParamList = {
   Step1: undefined;
   Step2: undefined;
   Step3: undefined;
-  Review: undefined;
-  Complete: undefined;
+  Step4Review: undefined;
+  Step5Complete: undefined;
 };
 
 export const FLOW_STACK_KEYS: (keyof FlowStackParamList)[] = [
@@ -22,8 +22,8 @@ export const FLOW_STACK_KEYS: (keyof FlowStackParamList)[] = [
   'Step1',
   'Step2',
   'Step3',
-  'Review',
-  'Complete',
+  'Step4Review',
+  'Step5Complete',
 ];
 
 const FlowStack = createNativeStackNavigator<FlowStackParamList>();

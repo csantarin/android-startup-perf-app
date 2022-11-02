@@ -6,7 +6,7 @@ import ScreenView from '../../../components/ScreenView';
 import useFlowStackNavigatorNavigate from '../../nav/useFlowStackNavigatorNavigate';
 import useFlowStateContext from '../../sm/useFlowStateContext';
 
-const CompleteScreen = () => {
+const Step5CompleteScreen = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_step1Value, _setStep1Value, resetStep1Value] = useFlowStateContext('step1');
 
@@ -36,4 +36,4 @@ const CompleteScreen = () => {
   );
 };
 
-export default CompleteScreen;
+export default Step5CompleteScreen;
