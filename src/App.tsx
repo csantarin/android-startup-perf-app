@@ -8,19 +8,9 @@
  * @format
  */
 
-import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { Button, Text, TextInput, View } from 'react-native';
 
-import ConditionalText from './components/ConditionalText';
-import ScreenView from './components/ScreenView';
-
-import FlowStack from './flow/nav/FlowStack';
-import useFlowStackNavigatorNavigate from './flow/nav/useFlowStackNavigatorNavigate';
-
-import FlowStateContext from './flow/sm/FlowStateContext';
-import useFlowStateContext from './flow/sm/useFlowStateContext';
-import useFlowStateContextProviderValue from './flow/sm/useFlowStateContextProviderValue';
+import Flow from './flow/ui/Flow';
 
 export const APP_NAME = 'AndroidStartupPerfApp';
 
