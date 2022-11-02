@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.androidstartupperfapp.databinding.ThirdFragmentBinding;
+import com.androidstartupperfapp.react.ReactFragmentInstanceManager;
 
 public class ThirdFragment extends Fragment {
 
@@ -27,11 +28,17 @@ public class ThirdFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+
+    binding.showReactFragmentButton.setOnClickListener(this::onShowReactFragmentButtonClick);
   }
 
   @Override
   public void onDestroyView() {
     super.onDestroyView();
     binding = null;
+  }
+
+  private void onShowReactFragmentButtonClick(View view) {
+    ReactFragmentInstanceManager.showReactFragment();
   }
 }

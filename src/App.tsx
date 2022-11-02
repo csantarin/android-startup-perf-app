@@ -8,16 +8,28 @@
  * @format
  */
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, NavigationState } from '@react-navigation/native';
 import React from 'react';
 
 import Flow from './flow/ui/Flow';
+import NavigationStateStore from './navigation/NavigationStateStore';
 
 export const APP_NAME = 'AndroidStartupPerfApp';
 
 const App = () => {
+  /**
+   * Respond to the state change by syncing the current back stack store in native code up with
+   * whatever back stack index this container is at.
+   * @param state The current navigation state.
+   */
+  // There's an option to also narrow the `state.routes` down specifically to the flow navigation
+  // tree, but we don't need it, so we're not applying `FlowStackParamList` to the generic type.
+  const handleNavigationContainerStateChange = (state: NavigationState | undefined) => {
+    NavigationStateStore.setIndex(state?.index);
+  };
+
   return (
-    <NavigationContainer>
+    <NavigationContainer onStateChange={handleNavigationContainerStateChange}>
       <Flow />
     </NavigationContainer>
   );

@@ -3,6 +3,7 @@ package com.androidstartupperfapp;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -11,9 +12,13 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.androidstartupperfapp.databinding.MainActivityBinding;
+import com.androidstartupperfapp.navigation.NavigationStateStore;
+import com.androidstartupperfapp.react.ReactFragmentInstanceManager;
+import com.facebook.react.ReactFragment;
+import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.google.android.material.snackbar.Snackbar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler {
 
   private AppBarConfiguration appBarConfiguration;
   private MainActivityBinding binding;
@@ -34,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
     binding.fab
       .setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
       .setAction("Action", null).show());
+
+    ReactFragmentInstanceManager.setFragmentManager(getSupportFragmentManager());
+    ReactFragmentInstanceManager.loadReactFragment();
   }
 
   @Override
@@ -63,5 +71,25 @@ public class MainActivity extends AppCompatActivity {
     NavController navController = Navigation.findNavController(this, R.id.nav_host_main_content_fragment);
     return NavigationUI.navigateUp(navController, appBarConfiguration)
       || super.onSupportNavigateUp();
+  }
+
+  @Override
+  public void invokeDefaultOnBackPressed() {
+    super.onBackPressed();
+  }
+
+  @Override
+  public void onBackPressed() {
+    ReactFragment reactFragment = ReactFragmentInstanceManager.getReactFragment();
+
+    if (reactFragment.isVisible()) {
+      if (NavigationStateStore.getIndex() > 0) {
+        reactFragment.onBackPressed();
+      } else {
+        ReactFragmentInstanceManager.hideReactFragment();
+      }
+    } else {
+      super.onBackPressed();
+    }
   }
 }
