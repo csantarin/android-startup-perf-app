@@ -24,4 +24,6 @@ const Step3Screen = () => {
   );
 };
 
+Step3Screen.ROUTE = 'Step3' as const;
+
 export default Step3Screen;

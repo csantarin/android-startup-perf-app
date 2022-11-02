@@ -24,4 +24,6 @@ const Step2Screen = () => {
   );
 };
 
+Step2Screen.ROUTE = 'Step2' as const;
+
 export default Step2Screen;

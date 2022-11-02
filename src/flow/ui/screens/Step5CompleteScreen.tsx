@@ -36,4 +36,6 @@ const Step5CompleteScreen = () => {
   );
 };
 
+Step5CompleteScreen.ROUTE = 'Step5Complete' as const;
+
 export default Step5CompleteScreen;

@@ -44,4 +44,6 @@ const Step4ReviewScreen = () => {
   );
 };
 
+Step4ReviewScreen.ROUTE = 'Step4Review' as const;
+
 export default Step4ReviewScreen;

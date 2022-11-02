@@ -16,4 +16,6 @@ const HomeScreen = () => {
   );
 };
 
+HomeScreen.ROUTE = 'Home' as const;
+
 export default HomeScreen;

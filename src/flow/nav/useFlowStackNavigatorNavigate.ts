@@ -1,6 +1,6 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 
-import { FLOW_STACK_KEYS, FlowStackParamList } from './FlowStack';
+import { FLOW_STACK_SCREEN_ROUTES, FlowStackParamList } from './FlowStackRoutes';
 
 const useFlowStackNavigatorNavigate = () => {
   const navigation = useNavigation<NavigationProp<FlowStackParamList>>();
@@ -26,7 +26,7 @@ const useFlowStackNavigatorNavigate = () => {
    * }
    * ```
    */
-  const navigateTo = FLOW_STACK_KEYS.reduce((navigateToFinal, key) => {
+  const navigateTo = FLOW_STACK_SCREEN_ROUTES.reduce((navigateToFinal, key) => {
     navigateToFinal[key] = () => {
       navigation.navigate(key);
     };
