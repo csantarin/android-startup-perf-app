@@ -10,11 +10,15 @@
 
 import { NavigationContainer, NavigationProp, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { createContext, useContext, useState } from 'react';
+import React from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
 
 import ConditionalText from './components/ConditionalText';
 import ScreenView from './components/ScreenView';
+
+import FlowStateContext from './flow/sm/FlowStateContext';
+import useFlowStateContext from './flow/sm/useFlowStateContext';
+import useFlowStateContextProviderValue from './flow/sm/useFlowStateContextProviderValue';
 
 export const APP_NAME = 'AndroidStartupPerfApp';
 
@@ -60,103 +64,6 @@ const useFlowStackNavigatorNavigate = () => {
 };
 
 const FlowStack = createNativeStackNavigator<FlowStackParamList>();
-
-interface FlowStateContextValue {
-  step1: {
-    value: boolean;
-    setValue: React.Dispatch<React.SetStateAction<boolean>>;
-    resetValue: () => void;
-  };
-  step2: {
-    value: string;
-    setValue: React.Dispatch<React.SetStateAction<string>>;
-    resetValue: () => void;
-  };
-  step3: {
-    value: string;
-    setValue: React.Dispatch<React.SetStateAction<string>>;
-    resetValue: () => void;
-  };
-}
-
-const DEFAULT_FLOW_STATE_CONTEXT_VALUE: FlowStateContextValue = {
-  step1: {
-    value: false,
-    setValue: () => {},
-    resetValue: () => {},
-  },
-  step2: {
-    value: '',
-    setValue: () => {},
-    resetValue: () => {},
-  },
-  step3: {
-    value: '',
-    setValue: () => {},
-    resetValue: () => {},
-  },
-};
-
-const FlowStateContext = createContext(DEFAULT_FLOW_STATE_CONTEXT_VALUE);
-const useFlowStateContextProviderValue = (): FlowStateContextValue => {
-  const [ step1Value, setStep1Value ] = useState(DEFAULT_FLOW_STATE_CONTEXT_VALUE.step1.value);
-  const resetStep1Value = () => {
-    setStep1Value(DEFAULT_FLOW_STATE_CONTEXT_VALUE.step1.value);
-  };
-
-  const [ step2Value, setStep2Value ] = useState(DEFAULT_FLOW_STATE_CONTEXT_VALUE.step2.value);
-  const resetStep2Value = () => {
-    setStep2Value(DEFAULT_FLOW_STATE_CONTEXT_VALUE.step2.value);
-  };
-
-  const [ step3Value, setStep3Value ] = useState(DEFAULT_FLOW_STATE_CONTEXT_VALUE.step3.value);
-  const resetStep3Value = () => {
-    setStep3Value(DEFAULT_FLOW_STATE_CONTEXT_VALUE.step3.value);
-  };
-
-  return {
-    step1: {
-      value: step1Value,
-      setValue: setStep1Value,
-      resetValue: resetStep1Value,
-    },
-    step2: {
-      value: step2Value,
-      setValue: setStep2Value,
-      resetValue: resetStep2Value,
-    },
-    step3: {
-      value: step3Value,
-      setValue: setStep3Value,
-      resetValue: resetStep3Value,
-    },
-  };
-};
-
-// Imitate useState API as that's all the client code cares about.
-// The useContext behavior under the hood is abstracted from the client code.
-type FlowStateContextHook<Key extends keyof FlowStateContextValue> = [
-  FlowStateContextValue[Key]['value'],
-  FlowStateContextValue[Key]['setValue'],
-  FlowStateContextValue[Key]['resetValue'],
-];
-
-/**
- * Selects a slice from the state context using a slice key.
- * @template Key Any of the known state context keys (`step1`, `step2`, `step3`, ...).
- * @param step The state context slice key to select.
- * @returns The state context slice.
- */
-const useFlowStateContext = <Key extends keyof FlowStateContextValue>(step: Key): FlowStateContextHook<Key> => {
-  const context = useContext<FlowStateContextValue>(FlowStateContext);
-  const { value, setValue, resetValue } = context[step];
-
-  return [
-    value,
-    setValue,
-    resetValue,
-  ];
-};
 
 const App = () => {
   const flowDataStateContextValue = useFlowStateContextProviderValue();
