@@ -8,62 +8,21 @@
  * @format
  */
 
-import { NavigationContainer, NavigationProp, useNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
 
 import ConditionalText from './components/ConditionalText';
 import ScreenView from './components/ScreenView';
 
+import FlowStack from './flow/nav/FlowStack';
+import useFlowStackNavigatorNavigate from './flow/nav/useFlowStackNavigatorNavigate';
+
 import FlowStateContext from './flow/sm/FlowStateContext';
 import useFlowStateContext from './flow/sm/useFlowStateContext';
 import useFlowStateContextProviderValue from './flow/sm/useFlowStateContextProviderValue';
 
 export const APP_NAME = 'AndroidStartupPerfApp';
-
-// NOTE: Don't use interface. Don't extend (extends) or intersect (&) with ParamsListBase, either.
-//
-// React Navigation Stack Navigator's ParamListBase generic type
-// goes absolutely loco with Record<string, unknown | object>!
-//
-// When you don't extend it, RouteNames work, but your custom params "don't".
-// When you extend it, RouteNames IntelliSense stops working.
-type FlowStackParamList = {
-  Home: undefined;
-  Step1: undefined;
-  Step2: undefined;
-  Step3: undefined;
-  Review: undefined;
-  Complete: undefined;
-};
-
-const ROOT_STACK_KEYS: (keyof FlowStackParamList)[] = [
-  // multiline
-  'Home',
-  'Step1',
-  'Step2',
-  'Step3',
-  'Review',
-  'Complete',
-];
-
-const useFlowStackNavigatorNavigate = () => {
-  const navigation = useNavigation<NavigationProp<FlowStackParamList>>();
-  const navigateTo = ROOT_STACK_KEYS.reduce((navigateToFinal, key) => {
-    navigateToFinal[key] = () => {
-      navigation.navigate(key);
-    };
-    return navigateToFinal;
-  }, {} as Record<keyof FlowStackParamList, () => void>);
-
-  return {
-    navigation,
-    navigateTo,
-  };
-};
-
-const FlowStack = createNativeStackNavigator<FlowStackParamList>();
 
 const App = () => {
   const flowDataStateContextValue = useFlowStateContextProviderValue();
