@@ -8,6 +8,7 @@
  * @format
  */
 
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 
 import Flow from './flow/ui/Flow';
@@ -15,9 +16,10 @@ import Flow from './flow/ui/Flow';
 export const APP_NAME = 'AndroidStartupPerfApp';
 
 const App = () => {
-  // eslint-disable-next-line prettier/prettier
   return (
-    <Flow />
+    <NavigationContainer>
+      <Flow />
+    </NavigationContainer>
   );
 };
 

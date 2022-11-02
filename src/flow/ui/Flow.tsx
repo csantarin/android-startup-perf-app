@@ -1,4 +1,3 @@
-import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 
 import FlowStack from '../nav/FlowStack';
@@ -12,20 +11,18 @@ const Flow = () => {
 
   return (
     <FlowStateContext.Provider value={flowDataStateContextValue}>
-      <NavigationContainer>
-        <FlowStack.Navigator initialRouteName={INITIAL_FLOW_STACK_SCREEN_ROUTE}>
-          {FLOW_STACK_SCREEN_ROUTES.map((route) => {
-            const screen = FLOW_STACK_SCREENS[route];
-            return (
-              <FlowStack.Screen
-                key={route}
-                name={route} // e.g. "Step1"
-                component={screen} // e.g. Step1Screen
-              />
-            );
-          })}
-        </FlowStack.Navigator>
-      </NavigationContainer>
+      <FlowStack.Navigator initialRouteName={INITIAL_FLOW_STACK_SCREEN_ROUTE}>
+        {FLOW_STACK_SCREEN_ROUTES.map((route) => {
+          const screen = FLOW_STACK_SCREENS[route];
+          return (
+            <FlowStack.Screen
+              key={route}
+              name={route} // e.g. "Step1"
+              component={screen} // e.g. Step1Screen
+            />
+          );
+        })}
+      </FlowStack.Navigator>
     </FlowStateContext.Provider>
   );
 };
