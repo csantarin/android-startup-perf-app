@@ -1,7 +1,7 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import { FlowStackParamList } from './FlowStackRoutes';
 
-const FlowStack = createNativeStackNavigator<FlowStackParamList>();
+const FlowStack = createStackNavigator<FlowStackParamList>();
 
 export default FlowStack;
