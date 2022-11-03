@@ -12,11 +12,21 @@ import { NavigationContainer, NavigationState } from '@react-navigation/native';
 import React from 'react';
 
 import Flow from './flow/ui/Flow';
+import Modal from './modal/ui/Modal';
 import NavigationStateStore from './navigation/NavigationStateStore';
 
 export const APP_NAME = 'AndroidStartupPerfApp';
 
 const App = () => {
+  const showModalOnly: boolean = false;
+
+  if (showModalOnly) {
+    // eslint-disable-next-line prettier/prettier
+    return (
+      <Modal />
+    );
+  }
+
   /**
    * Respond to the state change by syncing the current back stack store in native code up with
    * whatever back stack index this container is at.
