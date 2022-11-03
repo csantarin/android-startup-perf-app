@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Text } from 'react-native';
 
 import ScreenView from '../../../components/ScreenView';
+import ModalDemo from '../../../modal/ui/ModalDemo';
 
 import useFlowStackNavigatorNavigate from '../../nav/useFlowStackNavigatorNavigate';
 
@@ -12,6 +13,7 @@ const HomeScreen = () => {
     <ScreenView>
       <Text>Home</Text>
       <Button title="Start" onPress={navigateTo.Step1} />
+      <ModalDemo />
     </ScreenView>
   );
 };
