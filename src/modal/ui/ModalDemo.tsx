@@ -4,7 +4,7 @@ import { Alert, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 const ModalDemo = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const handleModalRequestClose = () => {
-    Alert.alert('Modal has been closed.');
+    Alert.alert('Modal has been closed via hardware back button.');
     setModalVisible(!modalVisible);
   };
   const handleModalHideButtonPress = () => {
