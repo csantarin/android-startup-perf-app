@@ -11,6 +11,7 @@ public class MainActivity extends ReactActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Log.d("ACTIVITY_LIFECYCLE", "onCreate()");
+    this.setContentView(R.layout.main_activity);
   }
 
   @Override
