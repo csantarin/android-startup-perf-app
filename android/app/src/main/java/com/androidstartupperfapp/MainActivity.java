@@ -3,15 +3,28 @@ package com.androidstartupperfapp;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.fragment.app.FragmentManager;
+
+import com.androidstartupperfapp.screens.LandingScreenFragment;
 import com.facebook.react.ReactActivity;
 
 public class MainActivity extends ReactActivity {
+
+  private final LandingScreenFragment landingScreenFragment = LandingScreenFragment.newInstance("", "");
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Log.d("ACTIVITY_LIFECYCLE", "onCreate()");
-    this.setContentView(R.layout.main_activity);
+    this.initializeLandingScreen();
+  }
+
+  private void initializeLandingScreen() {
+    this.getSupportFragmentManager()
+      .beginTransaction()
+      .add(android.R.id.content, this.landingScreenFragment)
+      .addToBackStack(LandingScreenFragment.BACK_STACK_NAME)
+      .commit();
   }
 
   @Override
@@ -59,16 +72,26 @@ public class MainActivity extends ReactActivity {
     return "AndroidStartupPerfApp";
   }
 
-  // Remove this, then observe the difference in the preservation of the UI state
-  // when the app is backgrounded via the hardware back button and then launched again.
   @Override
   public void invokeDefaultOnBackPressed() {
-    // Backgrounds the Application such that this Activity isn't destroyed.
-    // Allows the Application to relaunch with this Activity still alive.
-    // Preserves React state thus ensuring that their values are still intact.
-    // https://github.com/facebook/react-native/issues/13775#issuecomment-299147027
-    // https://stackoverflow.com/questions/38368201/react-native-android-movetasktoback
-    // https://stackoverflow.com/questions/39635398/background-a-react-native-android-app-using-back-button/39639286#39639286
-    this.moveTaskToBack(true);
+    FragmentManager.BackStackEntry backStackEntry = getSupportFragmentManager().getBackStackEntryAt(0);
+    String backStackEntryName = backStackEntry.getName();
+    if (backStackEntryName != null) {
+      if (backStackEntryName.equals(LandingScreenFragment.BACK_STACK_NAME)) {
+        if (this.landingScreenFragment.isHidden()) {
+          this.getSupportFragmentManager()
+            .beginTransaction()
+            .show(this.landingScreenFragment)
+            .commit();
+        } else {
+          // TODO: Find a way to seamlessly remove both the Android overlay and the React app.
+          //  The Android overlay is removed before the React app is removed.
+          this.getSupportFragmentManager()
+            .popBackStack();
+          super.invokeDefaultOnBackPressed();
+        }
+      } else {
+      }
+    }
   }
 }
