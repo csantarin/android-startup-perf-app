@@ -1,4 +1,5 @@
 import HomeScreen from '../ui/screens/HomeScreen';
+import LogoutScreen from '../ui/screens/LogoutScreen';
 import Step1Screen from '../ui/screens/Step1Screen';
 import Step2Screen from '../ui/screens/Step2Screen';
 import Step3Screen from '../ui/screens/Step3Screen';
@@ -7,6 +8,7 @@ import Step5CompleteScreen from '../ui/screens/Step5CompleteScreen';
 
 export const FLOW_STACK_SCREENS = Object.freeze({
   [HomeScreen.ROUTE]: HomeScreen,
+  [LogoutScreen.ROUTE]: LogoutScreen,
   [Step1Screen.ROUTE]: Step1Screen,
   [Step2Screen.ROUTE]: Step2Screen,
   [Step3Screen.ROUTE]: Step3Screen,
@@ -27,6 +29,7 @@ export const INITIAL_FLOW_STACK_SCREEN_ROUTE = HomeScreen.ROUTE;
 // When you extend it, RouteNames IntelliSense stops working.
 export type FlowStackParamList = {
   [HomeScreen.ROUTE]: undefined;
+  [LogoutScreen.ROUTE]: undefined;
   [Step1Screen.ROUTE]: undefined;
   [Step2Screen.ROUTE]: undefined;
   [Step3Screen.ROUTE]: undefined;

@@ -2,6 +2,8 @@ package com.androidstartupperfapp;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.androidstartupperfapp.screens.LandingScreenFragment;
 import com.facebook.react.ReactActivity;
@@ -21,6 +23,10 @@ public class MainActivity extends ReactActivity {
       .add(android.R.id.content, MainActivityScreensManager.initLandingScreenFragment())
       .addToBackStack(LandingScreenFragment.BACK_STACK_NAME)
       .commit();
+  }
+
+  private void onLandingScreenButtonClick(View view) {
+    getReactInstanceManager().onBackPressed();
   }
 
   @Override
