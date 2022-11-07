@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
+import com.androidstartupperfapp.MainActivityScreensManager;
 import com.androidstartupperfapp.R;
 
 /**
@@ -25,8 +26,6 @@ public class LandingScreenFragment extends Fragment {
   private static final String ARG_PARAM2 = "param2";
 
   // TODO: Rename and change types of parameters
-  private String mParam1;
-  private String mParam2;
 
   public LandingScreenFragment() {
     // Required empty public constructor
@@ -36,36 +35,24 @@ public class LandingScreenFragment extends Fragment {
    * Use this factory method to create a new instance of
    * this fragment using the provided parameters.
    *
-   * @param param1 Parameter 1.
-   * @param param2 Parameter 2.
    * @return A new instance of fragment LandingScreenFragment.
    */
   // TODO: Rename and change types and number of parameters
-  public static LandingScreenFragment newInstance(
-    String param1,
-    String param2
-  ) {
-    LandingScreenFragment fragment = new LandingScreenFragment();
-    Bundle args = new Bundle();
-    args.putString(ARG_PARAM1, param1);
-    args.putString(ARG_PARAM2, param2);
-    fragment.setArguments(args);
-    return fragment;
+  public static LandingScreenFragment newInstance() {
+    return new LandingScreenFragment();
   }
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    if (getArguments() != null) {
-      mParam1 = getArguments().getString(ARG_PARAM1);
-      mParam2 = getArguments().getString(ARG_PARAM2);
-    }
   }
 
   private void onLandingScreenButtonClick(View view) {
     getActivity().getSupportFragmentManager()
       .beginTransaction()
-      .hide(this)
+//      .attach(MainActivityScreensManager.initLandingScreenSignUpFragment())
+      .add(android.R.id.content, MainActivityScreensManager.initLandingScreenSignUpFragment())
+      .addToBackStack(LandingScreenSignUpFragment.BACK_STACK_NAME)
       .commit();
   }
 
@@ -84,5 +71,13 @@ public class LandingScreenFragment extends Fragment {
     return landingScreenFragment;
   }
 
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+  }
 
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+  }
 }

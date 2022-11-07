@@ -10,19 +10,18 @@ import com.facebook.react.ReactActivity;
 
 public class MainActivity extends ReactActivity {
 
-  private final LandingScreenFragment landingScreenFragment = LandingScreenFragment.newInstance("", "");
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Log.d("ACTIVITY_LIFECYCLE", "onCreate()");
-    this.initializeLandingScreen();
+//    this.initializeLandingScreen();
   }
 
   private void initializeLandingScreen() {
     this.getSupportFragmentManager()
       .beginTransaction()
-      .add(android.R.id.content, this.landingScreenFragment)
+//      .attach(MainActivityScreensManager.initLandingScreenFragment())
+      .add(android.R.id.content, MainActivityScreensManager.initLandingScreenFragment())
       .addToBackStack(LandingScreenFragment.BACK_STACK_NAME)
       .commit();
   }
@@ -78,18 +77,19 @@ public class MainActivity extends ReactActivity {
     String backStackEntryName = backStackEntry.getName();
     if (backStackEntryName != null) {
       if (backStackEntryName.equals(LandingScreenFragment.BACK_STACK_NAME)) {
-        if (this.landingScreenFragment.isHidden()) {
-          this.getSupportFragmentManager()
-            .beginTransaction()
-            .show(this.landingScreenFragment)
-            .commit();
-        } else {
-          // TODO: Find a way to seamlessly remove both the Android overlay and the React app.
-          //  The Android overlay is removed before the React app is removed.
-          this.getSupportFragmentManager()
-            .popBackStack();
-          super.invokeDefaultOnBackPressed();
-        }
+        this.getSupportFragmentManager().popBackStack();
+//        if (this.landingScreenFragment.isHidden()) {
+//          this.getSupportFragmentManager()
+//            .beginTransaction()
+//            .show(this.landingScreenFragment)
+//            .commit();
+//        } else {
+//          // TODO: Find a way to seamlessly remove both the Android overlay and the React app.
+//          //  The Android overlay is removed before the React app is removed.
+//          this.getSupportFragmentManager()
+//            .popBackStack();
+//          super.invokeDefaultOnBackPressed();
+//        }
       } else {
       }
     }
