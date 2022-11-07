@@ -137,6 +137,17 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "0.0.1"
+        /**
+         * Since Flipper 0.128.0, SQLite Framework 2.2.0 broke Android compilation:
+         * https://github.com/facebook/flipper/issues/3397#issuecomment-1030991904
+         * The fix is to force resolve the version to 2.1.0:
+         * https://github.com/facebook/flipper/issues/3397#issuecomment-1041597570
+         */
+        configurations.all {
+            resolutionStrategy {
+                force 'androidx.sqlite:sqlite-framework:2.1.0'
+            }
+        }
     }
     splits {
         abi {
