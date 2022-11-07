@@ -50,9 +50,7 @@ public class LandingScreenFragment extends Fragment {
   private void onLandingScreenButtonClick(View view) {
     getActivity().getSupportFragmentManager()
       .beginTransaction()
-//      .attach(MainActivityScreensManager.initLandingScreenSignUpFragment())
-      .add(android.R.id.content, MainActivityScreensManager.initLandingScreenSignUpFragment())
-      .addToBackStack(LandingScreenSignUpFragment.BACK_STACK_NAME)
+      .hide(MainActivityScreensManager.getLandingScreenFragment())
       .commit();
   }
 

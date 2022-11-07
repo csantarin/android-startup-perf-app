@@ -14,13 +14,12 @@ public class MainActivity extends ReactActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Log.d("ACTIVITY_LIFECYCLE", "onCreate()");
-//    this.initializeLandingScreen();
+    this.initializeLandingScreen();
   }
 
   private void initializeLandingScreen() {
     this.getSupportFragmentManager()
       .beginTransaction()
-//      .attach(MainActivityScreensManager.initLandingScreenFragment())
       .add(android.R.id.content, MainActivityScreensManager.initLandingScreenFragment())
       .addToBackStack(LandingScreenFragment.BACK_STACK_NAME)
       .commit();
@@ -73,25 +72,13 @@ public class MainActivity extends ReactActivity {
 
   @Override
   public void invokeDefaultOnBackPressed() {
-    FragmentManager.BackStackEntry backStackEntry = getSupportFragmentManager().getBackStackEntryAt(0);
-    String backStackEntryName = backStackEntry.getName();
-    if (backStackEntryName != null) {
-      if (backStackEntryName.equals(LandingScreenFragment.BACK_STACK_NAME)) {
-        this.getSupportFragmentManager().popBackStack();
-//        if (this.landingScreenFragment.isHidden()) {
-//          this.getSupportFragmentManager()
-//            .beginTransaction()
-//            .show(this.landingScreenFragment)
-//            .commit();
-//        } else {
-//          // TODO: Find a way to seamlessly remove both the Android overlay and the React app.
-//          //  The Android overlay is removed before the React app is removed.
-//          this.getSupportFragmentManager()
-//            .popBackStack();
-//          super.invokeDefaultOnBackPressed();
-//        }
-      } else {
-      }
+    if (MainActivityScreensManager.getLandingScreenFragment().isHidden()) {
+      getSupportFragmentManager()
+        .beginTransaction()
+        .show(MainActivityScreensManager.getLandingScreenFragment())
+        .commit();
+    } else {
+      super.invokeDefaultOnBackPressed();
     }
   }
 }
