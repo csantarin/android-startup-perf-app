@@ -1,11 +1,9 @@
 package com.androidstartupperfapp;
 
 import com.androidstartupperfapp.screens.LandingScreenFragment;
-import com.androidstartupperfapp.screens.LandingScreenSignUpFragment;
 
-public class MainActivityScreensManager {
+public final class MainActivityScreensManager {
   private static LandingScreenFragment landingScreenFragment;
-  private static LandingScreenSignUpFragment landingScreenSignUpFragment;
 
   public static LandingScreenFragment getLandingScreenFragment() {
     return landingScreenFragment;
@@ -20,16 +18,8 @@ public class MainActivityScreensManager {
     return landingScreenFragment;
   }
 
-  public static LandingScreenSignUpFragment getLandingScreenSignUpFragment() {
-    return landingScreenSignUpFragment;
-  }
-
-  public static void setLandingScreenSignUpFragment(LandingScreenSignUpFragment landingScreenSignUpFragment) {
-    MainActivityScreensManager.landingScreenSignUpFragment = landingScreenSignUpFragment;
-  }
-
-  public static LandingScreenSignUpFragment initLandingScreenSignUpFragment() {
-    landingScreenSignUpFragment = new LandingScreenSignUpFragment();
-    return landingScreenSignUpFragment;
+  public static class FlowStackRoutes {
+    public static final String LOGIN = "Login";
+    public static final String REGISTER = "Register";
   }
 }

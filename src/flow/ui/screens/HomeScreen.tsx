@@ -13,7 +13,9 @@ const HomeScreen = () => {
     <ScreenView>
       <Text>Home</Text>
       <Button title="Start" onPress={navigateTo.Step1} />
+      <Button title="Login" onPress={navigateTo.Login} />
       <Button title="Logout" onPress={navigateTo.Logout} />
+      <Button title="Register" onPress={navigateTo.Register} />
       <PositiveToggleButton />
     </ScreenView>
   );

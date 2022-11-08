@@ -21,6 +21,7 @@ const Step1Screen = () => {
   return (
     <ScreenView>
       <Text>Step 1: Consent</Text>
+      <Button title="Logout" onPress={navigateTo.Logout} color="gray" />
       <View>
         <View>
           <Text>Read the Terms & Conditions.</Text>

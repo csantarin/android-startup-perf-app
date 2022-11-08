@@ -1,7 +1,10 @@
 import { useState } from 'react';
 
+import { FlowStackRoute } from '../nav/FlowStackRoutes';
+
 import { DEFAULT_FLOW_STATE_CONTEXT_VALUE, FlowStateContextValue } from './FlowStateContext';
 
+const DEFAULT_INITIAL_ROUTE_NAME = null;
 const DEFAULT_STEP1_VALUE = DEFAULT_FLOW_STATE_CONTEXT_VALUE.step1.value;
 const DEFAULT_STEP2_VALUE = DEFAULT_FLOW_STATE_CONTEXT_VALUE.step2.value;
 const DEFAULT_STEP3_VALUE = DEFAULT_FLOW_STATE_CONTEXT_VALUE.step3.value;
@@ -12,6 +15,11 @@ const DEFAULT_STEP3_VALUE = DEFAULT_FLOW_STATE_CONTEXT_VALUE.step3.value;
  * @returns Flow state manager as context provider value.
  */
 const useFlowStateContextProviderValue = (): FlowStateContextValue => {
+  const [initialRouteName, setInitialRouteName] = useState<FlowStackRoute | null>(null);
+  const resetInitialRouteName = () => {
+    setInitialRouteName(DEFAULT_INITIAL_ROUTE_NAME);
+  };
+
   const [step1Value, setStep1Value] = useState(DEFAULT_STEP1_VALUE);
   const resetStep1Value = () => {
     setStep1Value(DEFAULT_STEP1_VALUE);
@@ -28,6 +36,11 @@ const useFlowStateContextProviderValue = (): FlowStateContextValue => {
   };
 
   return {
+    initialRouteName: {
+      value: initialRouteName,
+      setValue: setInitialRouteName,
+      resetValue: resetInitialRouteName,
+    },
     step1: {
       value: step1Value,
       setValue: setStep1Value,
