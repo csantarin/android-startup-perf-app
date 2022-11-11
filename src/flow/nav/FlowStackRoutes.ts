@@ -14,7 +14,9 @@ export const FLOW_STACK_SCREENS = Object.freeze({
   [Step5CompleteScreen.ROUTE]: Step5CompleteScreen,
 });
 
-export const FLOW_STACK_SCREEN_ROUTES = Object.keys(FLOW_STACK_SCREENS) as (keyof typeof FLOW_STACK_SCREENS)[];
+export type FlowStackRoute = keyof typeof FLOW_STACK_SCREENS;
+
+export const FLOW_STACK_SCREEN_ROUTES = Object.keys(FLOW_STACK_SCREENS) as FlowStackRoute[];
 
 export const INITIAL_FLOW_STACK_SCREEN_ROUTE = HomeScreen.ROUTE;
 
