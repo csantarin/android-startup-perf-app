@@ -1,7 +1,7 @@
 import React from 'react';
 
-import FlowStack from '../nav/FlowStack';
 import { FLOW_STACK_SCREEN_ROUTES, FLOW_STACK_SCREENS, INITIAL_FLOW_STACK_SCREEN_ROUTE } from '../nav/FlowStackRoutes';
+import FlowStack from './FlowStack';
 
 export const FlowStackNavigator = () => {
   return (
