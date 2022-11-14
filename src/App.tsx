@@ -22,7 +22,7 @@ const App = () => {
   }, []);
 
   return (
-    <NavigationContainer onStateChange={handleNavigationContainerStateChange}>
+    <NavigationContainer>
       <Flow />
     </NavigationContainer>
   );
