@@ -28,6 +28,8 @@ public class MainActivity extends ReactActivity {
     this.maybeGoBackToLandingScreen();
   }
 
+  // TODO: Relinquish all of this behavior to a custom navigator.
+
   private void initializeLandingScreen() {
     LandingScreenFragment landingScreenFragment = MainActivityScreensManager.createLandingScreenFragment();
     landingScreenFragment.addAsync(this);

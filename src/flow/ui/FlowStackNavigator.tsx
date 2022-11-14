@@ -6,7 +6,7 @@ import { FLOW_STACK_SCREEN_ROUTES, FLOW_STACK_SCREENS, FlowStackRoute } from '..
 import useFlowStateContext from '../sm/useFlowStateContext';
 import FlowStack from './FlowStack';
 
-export const FlowStackNavigator = () => {
+const FlowStackNavigator = () => {
   const [initialRouteName, setInitialRouteName] = useFlowStateContext('initialRouteName');
 
   useEffect(() => {

@@ -47,7 +47,13 @@ public class LandingScreenFragment extends Fragment {
     Button registerButton = rootView.findViewById(R.id.landing_screen_register_button);
     registerButton.setOnClickListener(this::onRegisterButtonClick);
   }
+  //endregion
 
+  // TODO: Refactor this such that this screen will only need to decide where to go next.
+  //       It's not great that it's doing all sorts of navigation behaviors.
+  //       Relinquish it to a custom screen navigator.
+
+  //region Navigation transition to and from self
   private void onLoginButtonClick(View view) {
     InitialRouteNameState.setValue(MainActivityScreensManager.FlowStackRoutes.LOGIN);
     this.hideAsync(this.getActivity());
