@@ -17,7 +17,6 @@ public class RNNavigationStateStoreModule extends ReactContextBaseJavaModule {
     super(context);
 
     // Setup subscribers.
-    NavigationStateStore.setIndexChangeListener(this::onIndexChange);
     NavigationStateStore.setInitialRouteNameChangeListener(this::onInitialRouteNameChange);
   }
 
@@ -48,27 +47,6 @@ public class RNNavigationStateStoreModule extends ReactContextBaseJavaModule {
 
   }
   //endregion
-
-  @ReactMethod
-  public void getIndex(Promise promise) {
-    try {
-      int index = NavigationStateStore.getIndex();
-      promise.resolve(index);
-    } catch (Exception exception) {
-      promise.reject("Unable to get index", exception);
-    }
-  }
-
-  @ReactMethod
-  public void setIndex(int index) {
-    NavigationStateStore.setIndex(index);
-  }
-
-  private void onIndexChange(int index) {
-    WritableMap params = Arguments.createMap();
-    params.putInt("index", index);
-    sendEvent(getReactApplicationContext(), "indexChange", params);
-  }
 
   @ReactMethod
   public void getInitialRouteName(Promise promise) {
