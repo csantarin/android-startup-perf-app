@@ -6,7 +6,7 @@ const { RNNavigationStateStore } = NativeModules as typeof NativeModules & {
 
 interface RNNavigationStateStore extends NativeModule {
   getInitialRouteName: () => Promise<string>;
-  setInitialRouteName: (index: string) => void;
+  setInitialRouteName: (initialRouteName: string) => void;
 }
 
 interface OnInitialRouteNameChangePayload<T extends string> {
@@ -28,7 +28,7 @@ class NavigationStateStore {
     const initialRouteName = await RNNavigationStateStore.getInitialRouteName();
 
     if (initialRouteName == null) {
-      throw new Error('NavigationStateStore index is unexpectedly nullish.');
+      throw new Error('NavigationStateStore initialRouteName is unexpectedly nullish.');
     }
 
     return initialRouteName as T;
