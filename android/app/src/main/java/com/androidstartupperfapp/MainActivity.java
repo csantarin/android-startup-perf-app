@@ -1,5 +1,9 @@
 package com.androidstartupperfapp;
 
+import android.os.Bundle;
+
+import com.androidstartupperfapp.navigation.initialroutenamestate.InitialRouteNameState;
+import com.androidstartupperfapp.screens.landingscreen.LandingScreenFragment;
 import com.facebook.react.ReactActivity;
 
 public class MainActivity extends ReactActivity {
@@ -11,5 +15,32 @@ public class MainActivity extends ReactActivity {
   @Override
   protected String getMainComponentName() {
     return "AndroidStartupPerfApp";
+  }
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    this.initializeLandingScreen();
+  }
+
+  @Override
+  public void invokeDefaultOnBackPressed() {
+    this.maybeGoBackToLandingScreen();
+  }
+
+  private void initializeLandingScreen() {
+    LandingScreenFragment landingScreenFragment = MainActivityScreensManager.createLandingScreenFragment();
+    landingScreenFragment.addAsync(this);
+  }
+
+  private void maybeGoBackToLandingScreen() {
+    LandingScreenFragment landingScreenFragment = MainActivityScreensManager.getLandingScreenFragment();
+    if (landingScreenFragment.isHidden()) {
+      // Reset the React app navigation.
+      InitialRouteNameState.setValue(null);
+
+      // Show the Android landing screen fragment to simulate back button press navigation.
+      landingScreenFragment.showAsync(this);
+    }
   }
 }
