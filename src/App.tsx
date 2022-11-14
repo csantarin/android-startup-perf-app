@@ -29,4 +29,4 @@ const App = () => {
   );
 };
 
-export default withComponentLifecycleLogs(App);
+export default App;

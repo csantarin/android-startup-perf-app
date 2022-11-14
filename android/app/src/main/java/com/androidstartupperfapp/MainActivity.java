@@ -14,7 +14,6 @@ public class MainActivity extends ReactActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Log.d("ACTIVITY_LIFECYCLE", "onCreate()");
     this.initializeLandingScreen();
   }
 
@@ -24,42 +23,6 @@ public class MainActivity extends ReactActivity {
       .add(android.R.id.content, MainActivityScreensManager.initLandingScreenFragment())
       .addToBackStack(LandingScreenFragment.BACK_STACK_NAME)
       .commit();
-  }
-
-  @Override
-  protected void onDestroy() {
-    super.onDestroy();
-    Log.d("ACTIVITY_LIFECYCLE", "onDestroy()");
-  }
-
-  @Override
-  protected void onPause() {
-    super.onPause();
-    Log.d("ACTIVITY_LIFECYCLE", "onPause()");
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-    Log.d("ACTIVITY_LIFECYCLE", "onResume()");
-  }
-
-  @Override
-  protected void onStop() {
-    super.onStop();
-    Log.d("ACTIVITY_LIFECYCLE", "onStop()");
-  }
-
-  @Override
-  protected void onStart() {
-    super.onStart();
-    Log.d("ACTIVITY_LIFECYCLE", "onStart()");
-  }
-
-  @Override
-  protected void onRestart() {
-    super.onRestart();
-    Log.d("ACTIVITY_LIFECYCLE", "onRestart()");
   }
 
   /**
