@@ -12,7 +12,6 @@ import { NavigationContainer, NavigationState } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 
 import Flow from './flow/ui/Flow';
-import withComponentLifecycleLogs from './hocs/withComponentLifecycleLogs';
 import NavigationStateStore from './navigation/NavigationStateStore';
 
 export const APP_NAME = 'AndroidStartupPerfApp';
