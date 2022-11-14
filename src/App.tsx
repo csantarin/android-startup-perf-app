@@ -8,19 +8,14 @@
  * @format
  */
 
-import { NavigationContainer, NavigationState } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import { NavigationContaine } from '@react-navigation/native';
+import React from 'react';
 
 import Flow from './flow/ui/Flow';
-import NavigationStateStore from './navigation/NavigationStateStore';
 
 export const APP_NAME = 'AndroidStartupPerfApp';
 
 const App = () => {
-  useEffect(() => {
-    console.log('App');
-  }, []);
-
   return (
     <NavigationContainer>
       <Flow />
