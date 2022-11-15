@@ -1,13 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import InitialRouteNameState from '../../navigation/InitialRouteNameState';
 
-import { FLOW_STACK_SCREEN_ROUTES, FLOW_STACK_SCREENS, FlowStackRoute } from '../nav/FlowStackRoutes';
+import {
+  FLOW_STACK_SCREENS,
+  FlowStackRoute,
+  getFlowStackScreenRoutes,
+  routeIsFlowStackInitialRouteName,
+  routeIsFlowStackPreInitialRouteName,
+} from '../nav/FlowStackRoutes';
 import useFlowStateContext from '../sm/useFlowStateContext';
 import FlowStack from './FlowStack';
 
 const FlowStackNavigator = () => {
   const [initialRouteName, setInitialRouteName] = useFlowStateContext('initialRouteName');
+  const prevInitialRouteName = useRef<FlowStackRoute | null>(null);
+  useEffect(() => {
+    prevInitialRouteName.current = initialRouteName;
+  }, [initialRouteName]);
 
   // INITIAL ROUTE NAME STATE EVENT LISTENER
   // This would be the usual transition between Android and React, but it can fail because the React
@@ -49,23 +59,34 @@ const FlowStackNavigator = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // When the initial route name is still null, don't return anything.
-  if (!initialRouteName) {
-    return null;
-  }
-
   // Every time the initial route name changes to a different string, reconstruct the entire thing.
   // Why? The initial route name will only be set once(!), i.e. during the initial render.
   // Subsequent changes won't alter the initial route.
   return (
-    <FlowStack.Navigator initialRouteName={initialRouteName}>
-      {FLOW_STACK_SCREEN_ROUTES.map((route) => {
+    <FlowStack.Navigator>
+      {getFlowStackScreenRoutes(initialRouteName).map((route) => {
         const screen = FLOW_STACK_SCREENS[route];
         return (
           <FlowStack.Screen
             key={route}
             name={route} // e.g. "Step1"
             component={screen} // e.g. Step1Screen
+            options={{
+              headerShown: !routeIsFlowStackPreInitialRouteName(route),
+              // Loading screen shouldn't animate. For the rest, relinquish animation to the library
+              //animation: routeIsFlowStackInitialRouteName(route) ? 'none' : undefined,
+              //animationDuration: !routeIsFlowStackPreInitialRouteName(route) ? undefined : 0,
+
+              // Force the animation behavior for initial route such that
+              // - going back to the pre-initial route is pop
+              // - going forward from initial route is push
+              animationTypeForReplace:
+                routeIsFlowStackInitialRouteName(route) || routeIsFlowStackPreInitialRouteName(route)
+                  ? prevInitialRouteName.current == null && initialRouteName != null
+                    ? 'push'
+                    : 'pop'
+                  : undefined,
+            }}
           />
         );
       })}
