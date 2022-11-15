@@ -72,6 +72,10 @@ public class LandingScreenFragment extends Fragment {
     }
     fragmentActivity.getSupportFragmentManager()
       .beginTransaction()
+      .setCustomAnimations(
+        R.anim.rns_default_enter_in,
+        R.anim.rns_default_enter_out
+      )
       .hide(this)
       .commit();
   }
@@ -82,6 +86,10 @@ public class LandingScreenFragment extends Fragment {
     }
     fragmentActivity.getSupportFragmentManager()
       .beginTransaction()
+      .setCustomAnimations(
+        R.anim.rns_default_exit_in,
+        R.anim.rns_default_exit_out
+      )
       .show(this)
       .commit();
   }
