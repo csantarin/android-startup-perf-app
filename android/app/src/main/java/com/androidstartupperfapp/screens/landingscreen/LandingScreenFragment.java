@@ -72,6 +72,9 @@ public class LandingScreenFragment extends Fragment {
     }
     fragmentActivity.getSupportFragmentManager()
       .beginTransaction()
+      // When setting screen transition animations up, use React Native Screens as your guiding star
+      // because React Navigation also uses it:
+      // https://github.com/software-mansion/react-native-screens/blob/3.18.2/android/src/main/java/com/swmansion/rnscreens/ScreenStack.kt#L137-L157
       .setCustomAnimations(
         R.anim.rns_default_enter_in,
         R.anim.rns_default_enter_out
@@ -86,6 +89,9 @@ public class LandingScreenFragment extends Fragment {
     }
     fragmentActivity.getSupportFragmentManager()
       .beginTransaction()
+      // When setting screen transition animations up, use React Native Screens as your guiding star
+      // because React Navigation also uses it:
+      // https://github.com/software-mansion/react-native-screens/blob/3.18.2/android/src/main/java/com/swmansion/rnscreens/ScreenStack.kt#L137-L157
       .setCustomAnimations(
         R.anim.rns_default_exit_in,
         R.anim.rns_default_exit_out
