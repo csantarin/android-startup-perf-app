@@ -30,6 +30,19 @@ public class RNInitialRouteNameStateModule extends ReactContextBaseJavaModule {
     String eventName,
     @Nullable WritableMap params
   ) {
+    // Don't emit anything when the React instance is not ready.
+    // You will get this crash if you emit the event before React is ready.
+    //
+    // """
+    // java.lang.IllegalStateException: Tried to access a JS module before the React instance was fully set up. Calls to ReactContext#getJSModule should only happen once initialize() has been called on your native module.
+    // """
+    //
+    // https://stackoverflow.com/questions/41120491/react-native-reactcontext-lifecycle-stuck-on-before-create
+    // For this scenario, compensate by retrieving the state imperatively with useEffect() on mount.
+    if (!reactContext.hasActiveReactInstance()) {
+      return;
+    }
+
     reactContext
       .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
       .emit(eventName, params);
