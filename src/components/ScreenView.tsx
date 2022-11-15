@@ -13,7 +13,7 @@ const ScreenView = (props: Pick<ViewProps, 'children'>) => {
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    alignItems: 'center',
+    padding: 32,
     justifyContent: 'center',
   },
 });
