@@ -1,7 +1,5 @@
 import React, { createContext } from 'react';
 
-import { FlowStackRoute } from '../nav/FlowStackRoutes';
-
 export interface FlowStep<T> {
   value: T;
   setValue: React.Dispatch<React.SetStateAction<T>>;
@@ -9,18 +7,12 @@ export interface FlowStep<T> {
 }
 
 export interface FlowStateContextValue {
-  initialRouteName: FlowStep<FlowStackRoute | null>;
   step1: FlowStep<boolean>;
   step2: FlowStep<string>;
   step3: FlowStep<string>;
 }
 
 export const DEFAULT_FLOW_STATE_CONTEXT_VALUE: FlowStateContextValue = {
-  initialRouteName: {
-    value: null,
-    setValue: () => {},
-    resetValue: () => {},
-  },
   step1: {
     value: false,
     setValue: () => {},

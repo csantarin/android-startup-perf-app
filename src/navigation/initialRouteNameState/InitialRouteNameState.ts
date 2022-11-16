@@ -22,17 +22,21 @@ class InitialRouteNameState {
       return Promise.resolve(DEFAULT_INITIAL_ROUTE_NAME);
     }
 
-    const value = (await RNInitialRouteNameState.getValue()) as InitialRouteName;
+    const value = (await RNInitialRouteNameState.getValue()) as InitialRouteName | null;
 
     return value;
   }
 
-  public async setValue(value: string | null) {
+  public setValue<InitialRouteName extends string>(value: InitialRouteName | null) {
     if (Platform.OS !== 'android') {
       return;
     }
 
     RNInitialRouteNameState.setValue(value);
+  }
+
+  public resetValue() {
+    this.setValue(DEFAULT_INITIAL_ROUTE_NAME);
   }
 
   /* eslint-disable @typescript-eslint/member-ordering */
