@@ -1,22 +1,21 @@
-import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { NavigationInjectedProps } from 'react-navigation';
 
 import ScreenView from '../../../components/ScreenView';
 
 import useTextInputState from '../../../hooks/useTextInputState';
 import useToggleElementState from '../../../hooks/useToggleElementState';
 import createFlowStackNavigateTo from '../../nav/createFlowStackNavigateTo';
-import { FlowStackParamList, FlowStackRoute } from '../../nav/FlowStackRoutes';
 
-const RegisterScreen = () => {
+const RegisterScreen = (props: NavigationInjectedProps) => {
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const [username, _setUsername, handleUsernameChangeText] = useTextInputState('');
   const [password, _setPassword, handlePasswordChangeText] = useTextInputState('');
   const [showPassword, _setShowPassword, toggleShowPassword] = useToggleElementState(false);
   /* eslint-enable @typescript-eslint/no-unused-vars */
   const showPasswordText = !showPassword ? 'show' : 'hide';
-  const navigation = useNavigation<NavigationProp<FlowStackParamList, FlowStackRoute>>();
+  const navigation = props.navigation;
   const navigateTo = createFlowStackNavigateTo(navigation);
 
   return (

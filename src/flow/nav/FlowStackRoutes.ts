@@ -22,6 +22,44 @@ export const FLOW_STACK_SCREENS = Object.freeze({
   [Step5CompleteScreen.ROUTE]: Step5CompleteScreen,
 });
 
+export const FLOW_STACK_ENTRY_POINT_SCREENS = Object.freeze({
+  [LoadingScreen.ROUTE]: LoadingScreen,
+});
+
+export const FLOW_STACK_STACK_ROUTES = Object.freeze({
+  [LoginScreen.ROUTE]: `${LoginScreen.ROUTE}Entry`,
+  [RegisterScreen.ROUTE]: `${RegisterScreen.ROUTE}Entry`,
+});
+
+export const FLOW_STACKS = Object.freeze({
+  [FLOW_STACK_STACK_ROUTES[LoginScreen.ROUTE]]: Object.freeze({
+    [LoginScreen.ROUTE]: LoginScreen,
+    [HomeScreen.ROUTE]: HomeScreen,
+    // [LoadingScreen.ROUTE]: LoadingScreen,
+    // [LoginScreen.ROUTE]: LoginScreen,
+    [LogoutScreen.ROUTE]: LogoutScreen,
+    [RegisterScreen.ROUTE]: RegisterScreen,
+    [Step1Screen.ROUTE]: Step1Screen,
+    [Step2Screen.ROUTE]: Step2Screen,
+    [Step3Screen.ROUTE]: Step3Screen,
+    [Step4ReviewScreen.ROUTE]: Step4ReviewScreen,
+    [Step5CompleteScreen.ROUTE]: Step5CompleteScreen,
+  }),
+  [FLOW_STACK_STACK_ROUTES[RegisterScreen.ROUTE]]: Object.freeze({
+    [RegisterScreen.ROUTE]: RegisterScreen,
+    [HomeScreen.ROUTE]: HomeScreen,
+    // [LoadingScreen.ROUTE]: LoadingScreen,
+    [LoginScreen.ROUTE]: LoginScreen,
+    [LogoutScreen.ROUTE]: LogoutScreen,
+    // [RegisterScreen.ROUTE]: RegisterScreen,
+    [Step1Screen.ROUTE]: Step1Screen,
+    [Step2Screen.ROUTE]: Step2Screen,
+    [Step3Screen.ROUTE]: Step3Screen,
+    [Step4ReviewScreen.ROUTE]: Step4ReviewScreen,
+    [Step5CompleteScreen.ROUTE]: Step5CompleteScreen,
+  }),
+});
+
 export type FlowStackRoute = keyof typeof FLOW_STACK_SCREENS;
 
 export const FLOW_STACK_SCREEN_ROUTES = Object.keys(FLOW_STACK_SCREENS) as FlowStackRoute[];

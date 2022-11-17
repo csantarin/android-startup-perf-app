@@ -1,14 +1,13 @@
-import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Button, Text } from 'react-native';
+import { NavigationInjectedProps } from 'react-navigation';
 
 import PositiveToggleButton from '../../../components/PositiveToggleButton';
 import ScreenView from '../../../components/ScreenView';
 import createFlowStackNavigateTo from '../../nav/createFlowStackNavigateTo';
-import { FlowStackParamList, FlowStackRoute } from '../../nav/FlowStackRoutes';
 
-const HomeScreen = () => {
-  const navigation = useNavigation<NavigationProp<FlowStackParamList, FlowStackRoute>>();
+const HomeScreen = (props: NavigationInjectedProps) => {
+  const navigation = props.navigation;
   const navigateTo = createFlowStackNavigateTo(navigation);
 
   return (
