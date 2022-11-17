@@ -1,14 +1,17 @@
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
 
 import ScreenView from '../../../components/ScreenView';
+import createFlowStackNavigateTo from '../../nav/createFlowStackNavigateTo';
+import { FlowStackParamList, FlowStackRoute } from '../../nav/FlowStackRoutes';
 
-import useFlowStackNavigatorNavigate from '../../nav/useFlowStackNavigatorNavigate';
 import useFlowStateContext from '../../sm/useFlowStateContext';
 
 const Step2Screen = () => {
   const [step2Value, setStep2State] = useFlowStateContext('step2');
-  const { navigateTo } = useFlowStackNavigatorNavigate();
+  const navigation = useNavigation<NavigationProp<FlowStackParamList, FlowStackRoute>>();
+  const navigateTo = createFlowStackNavigateTo(navigation);
   const handleInputChange = (value: string) => {
     setStep2State(value);
   };
@@ -24,7 +27,7 @@ const Step2Screen = () => {
           autoFocus={true}
         />
       </View>
-      <Button title="Step 3" onPress={navigateTo.Step3} />
+      <Button title="Step 3" onPress={() => navigateTo.Step3()} />
     </ScreenView>
   );
 };

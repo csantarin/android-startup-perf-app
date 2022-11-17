@@ -1,9 +1,11 @@
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Button, Text, View } from 'react-native';
 
 import ScreenView from '../../../components/ScreenView';
+import createFlowStackNavigateTo from '../../nav/createFlowStackNavigateTo';
+import { FlowStackParamList, FlowStackRoute } from '../../nav/FlowStackRoutes';
 
-import useFlowStackNavigatorNavigate from '../../nav/useFlowStackNavigatorNavigate';
 import useFlowStateContext from '../../sm/useFlowStateContext';
 
 const Step4ReviewScreen = () => {
@@ -19,7 +21,8 @@ const Step4ReviewScreen = () => {
   const [step3Value, _setStep3Value, resetStep3Value] = useFlowStateContext('step3');
   const step3Text = step3Value;
 
-  const { navigateTo } = useFlowStackNavigatorNavigate();
+  const navigation = useNavigation<NavigationProp<FlowStackParamList, FlowStackRoute>>();
+  const navigateTo = createFlowStackNavigateTo(navigation);
 
   const handleStartOverButtonPress = () => {
     resetStep1Value();
@@ -39,7 +42,7 @@ const Step4ReviewScreen = () => {
         <Text>Step 3: {step3Text}</Text>
       </View>
       <Button title="Start over" color="red" onPress={handleStartOverButtonPress} />
-      <Button title="Submit" onPress={navigateTo.Step5Complete} />
+      <Button title="Submit" onPress={() => navigateTo.Step5Complete()} />
     </ScreenView>
   );
 };
