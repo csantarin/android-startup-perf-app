@@ -1,5 +1,11 @@
 import React, { useContext, useEffect, useRef } from 'react';
 
+/**
+ * Accepts a context object carrying the current initial route name value of the Android app and
+ * returns the value of the current initial route name, as given by the nearest context provider
+ * for the given context.
+ * @returns The current value of the initial route name, `string` or `null`.
+ */
 const useInitialRouteNameStateContext = <InitialRouteName extends string>(
   initialRouteNameStateContext: React.Context<InitialRouteName | null>,
 ) => {

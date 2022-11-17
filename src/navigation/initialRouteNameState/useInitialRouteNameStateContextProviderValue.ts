@@ -2,6 +2,12 @@ import { useEffect, useState } from 'react';
 
 import InitialRouteNameState from './InitialRouteNameState';
 
+/**
+ * Updates the current initial route name value of an Android app as it switches from an Android
+ * fragment overlay to a React app and back. This context state manager should be provided as a
+ * `value` prop to the `<InitialRouteNameStateContext.Provider />` element only.
+ * @returns The current initial route name value, wrapped in a React context object.
+ */
 const useInitialRouteNameStateContextProviderValue = (): string | null => {
   const [initialRouteName, setInitialRouteName] = useState<string | null>(null);
 
