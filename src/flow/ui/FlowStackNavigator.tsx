@@ -31,13 +31,13 @@ const FlowStackNavigator = () => {
             component={screen} // e.g. Step1Screen
             options={{
               headerShown: !routeIsFlowStackPreInitialRouteName(route),
-              // Loading screen shouldn't animate. For the rest, relinquish animation to the library
-              //animation: routeIsFlowStackInitialRouteName(route) ? 'none' : undefined,
-              //animationDuration: !routeIsFlowStackPreInitialRouteName(route) ? undefined : 0,
-
               // Force the animation behavior for initial route such that
               // - going back to the pre-initial route is pop
               // - going forward from initial route is push
+              // - everything else is the navigation framework default, whatever that value is
+              //
+              // The point of this forced animation is to make the transition phase
+              // between the Android fragments and the React screens look consistent and natural.
               animationTypeForReplace:
                 routeIsFlowStackInitialRouteName(route) || routeIsFlowStackPreInitialRouteName(route)
                   ? prevInitialRouteName == null && initialRouteName != null
