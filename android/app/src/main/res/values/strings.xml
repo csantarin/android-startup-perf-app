@@ -1,3 +1,8 @@
 <resources>
   <string name="app_name">AndroidStartupPerfApp</string>
+
+  <!-- Landing Screen Fragment -->
+  <string name="landing_screen_heading">Landing Screen</string>
+  <string name="landing_screen_login_button_label">Login</string>
+  <string name="landing_screen_register_button_label">Register</string>
 </resources>

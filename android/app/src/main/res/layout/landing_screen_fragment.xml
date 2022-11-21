@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".screens.landingscreen.LandingScreenFragment"
+  >
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+      android:id="@+id/landing_screen_heading_textview"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/landing_screen_heading"
+      app:layout_constraintBottom_toTopOf="@+id/landing_screen_button_group"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+      android:id="@+id/landing_screen_button_group"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/landing_screen_heading_textview"
+      >
+
+      <Button
+        android:id="@+id/landing_screen_login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/landing_screen_login_button_label"
+        app:layout_constraintEnd_toStartOf="@id/landing_screen_register_button"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+      <Button
+        android:id="@+id/landing_screen_register_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/landing_screen_register_button_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/landing_screen_login_button"
+        />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
