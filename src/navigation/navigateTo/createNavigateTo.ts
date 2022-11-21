@@ -1,4 +1,8 @@
-import { NavigationProp, ParamListBase } from '@react-navigation/native';
+import { NavigationInjectedProps } from 'react-navigation';
+
+type ParamListBase = {
+  [x: string]: object | undefined;
+};
 
 // Immensely helpful: https://stackoverflow.com/a/64528509
 export type NavigateTo<ParamList extends ParamListBase> = {
@@ -53,7 +57,7 @@ export type NavigateTo<ParamList extends ParamListBase> = {
  * navigation.navigate('Login', { username: 'hi@email.com' });
  */
 const createNavigateTo = <ParamList extends ParamListBase>(
-  navigation: Pick<NavigationProp<ParamList>, 'navigate'>,
+  navigation: Pick<NavigationInjectedProps['navigation'], 'navigate'>,
   routeNames: (keyof ParamList)[],
 ) => {
   const navigateTo = routeNames.reduce((routeNameMap, routeName) => {

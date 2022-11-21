@@ -1,14 +1,13 @@
-import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Button, Text, View } from 'react-native';
+import { NavigationInjectedProps } from 'react-navigation';
 
 import ScreenView from '../../../components/ScreenView';
 import createFlowStackNavigateTo from '../../nav/createFlowStackNavigateTo';
-import { FlowStackParamList, FlowStackRoute } from '../../nav/FlowStackRoutes';
 
 import useFlowStateContext from '../../sm/useFlowStateContext';
 
-const Step5CompleteScreen = () => {
+const Step5CompleteScreen = (props: NavigationInjectedProps) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_step1Value, _setStep1Value, resetStep1Value] = useFlowStateContext('step1');
 
@@ -18,7 +17,7 @@ const Step5CompleteScreen = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_step3Value, _setStep3Value, resetStep3Value] = useFlowStateContext('step3');
 
-  const navigation = useNavigation<NavigationProp<FlowStackParamList, FlowStackRoute>>();
+  const navigation = props.navigation;
   const navigateTo = createFlowStackNavigateTo(navigation);
 
   const handleStartOverButtonPress = () => {

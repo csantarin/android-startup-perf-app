@@ -1,17 +1,16 @@
-import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Button, Text, View } from 'react-native';
+import { NavigationInjectedProps } from 'react-navigation';
 
 import ConditionalText from '../../../components/ConditionalText';
 import ScreenView from '../../../components/ScreenView';
 import createFlowStackNavigateTo from '../../nav/createFlowStackNavigateTo';
-import { FlowStackParamList, FlowStackRoute } from '../../nav/FlowStackRoutes';
 
 import useFlowStateContext from '../../sm/useFlowStateContext';
 
-const Step1Screen = () => {
+const Step1Screen = (props: NavigationInjectedProps) => {
   const [step1State, setStep1State] = useFlowStateContext('step1');
-  const navigation = useNavigation<NavigationProp<FlowStackParamList, FlowStackRoute>>();
+  const navigation = props.navigation;
   const navigateTo = createFlowStackNavigateTo(navigation);
   const buttonTitle = !step1State ? 'Agree' : 'Disagree';
   const buttonColor = !step1State ? undefined : 'red';

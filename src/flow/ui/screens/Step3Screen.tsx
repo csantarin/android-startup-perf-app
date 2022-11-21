@@ -1,16 +1,15 @@
-import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
+import { NavigationInjectedProps } from 'react-navigation';
 
 import ScreenView from '../../../components/ScreenView';
 import createFlowStackNavigateTo from '../../nav/createFlowStackNavigateTo';
-import { FlowStackParamList, FlowStackRoute } from '../../nav/FlowStackRoutes';
 
 import useFlowStateContext from '../../sm/useFlowStateContext';
 
-const Step3Screen = () => {
+const Step3Screen = (props: NavigationInjectedProps) => {
   const [step3Value, setStep3State] = useFlowStateContext('step3');
-  const navigation = useNavigation<NavigationProp<FlowStackParamList, FlowStackRoute>>();
+  const navigation = props.navigation;
   const navigateTo = createFlowStackNavigateTo(navigation);
   const handleInputChange = (value: string) => {
     setStep3State(value);

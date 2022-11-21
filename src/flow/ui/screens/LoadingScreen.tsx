@@ -5,11 +5,7 @@ import ScreenView from '../../../components/ScreenView';
 
 const LoadingScreen = () => {
   return (
-    <ScreenView>
-      <View style={styles.headingContainer}>
-        <Text style={styles.heading}>Loading</Text>
-      </View>
-    </ScreenView>
+    <ScreenView />
   );
 };
 
@@ -18,6 +14,7 @@ LoadingScreen.ROUTE = 'Loading' as const;
 const styles = StyleSheet.create({
   headingContainer: {
     alignItems: 'center',
+    backgroundColor: 'red',
   },
   heading: {
     fontSize: 48,

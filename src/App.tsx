@@ -8,8 +8,8 @@
  * @format
  */
 
-import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
+import { createAppContainer } from 'react-navigation';
 
 import Flow from './flow/ui/Flow';
 import { getInitialRouteNameStateContext } from './navigation/initialRouteNameState/InitialRouteNameStateContext';
@@ -18,15 +18,14 @@ import useInitialRouteNameStateContextProviderValue from './navigation/initialRo
 export const APP_NAME = 'AndroidStartupPerfApp';
 
 const InitialRouteNameStateContext = getInitialRouteNameStateContext();
+const NavigationContainer = createAppContainer(Flow);
 
 const App = () => {
   const initialRouteNameStateContextValue = useInitialRouteNameStateContextProviderValue();
 
   return (
     <InitialRouteNameStateContext.Provider value={initialRouteNameStateContextValue}>
-      <NavigationContainer>
-        <Flow />
-      </NavigationContainer>
+      <NavigationContainer />
     </InitialRouteNameStateContext.Provider>
   );
 };
